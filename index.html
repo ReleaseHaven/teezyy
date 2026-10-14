@@ -65,15 +65,6 @@ body::after{
   50%{box-shadow:0 0 20px 2px rgba(255,255,255,0.08)}
 }
 
-/* SCROLL REVEAL */
-.reveal{
-  opacity:0;
-  transition:opacity 1s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible{opacity:1}
-.reveal.delay-1{transition-delay:0.15s}
-.reveal.delay-2{transition-delay:0.3s}
-.reveal.delay-3{transition-delay:0.45s}
 
 /* ===== HERO ===== */
 .hero{
@@ -482,7 +473,7 @@ body::after{
 </section>
 
 <!-- ===== SOCIAL LINKS ===== -->
-<div class="social-bar reveal">
+<div class="social-bar">
   <div class="social-links">
     <a href="https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK" target="_blank" rel="noopener" aria-label="Spotify">
       <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -567,10 +558,10 @@ body::after{
 <!-- ===== PRE-SAVE CTA ===== -->
 <section class="presave-section" id="presave">
   <div class="presave-inner">
-    <div class="presave-big reveal">TIME IS<br>MONEY</div>
-    <div class="presave-album reveal delay-1">ALBUM DROPPING</div>
-    <div class="presave-date reveal delay-2">NOVEMBER 13, 2026</div>
-    <a href="#" class="btn btn-large reveal delay-3" id="presave-link" onclick="trackPresave()">PRE-SAVE NOW</a>
+    <div class="presave-big">TIME IS<br>MONEY</div>
+    <div class="presave-album">ALBUM DROPPING</div>
+    <div class="presave-date">NOVEMBER 13, 2026</div>
+    <a href="#" class="btn btn-large" id="presave-link" onclick="trackPresave()">PRE-SAVE NOW</a>
   </div>
 </section>
 
@@ -617,31 +608,6 @@ setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600
   tick();setInterval(tick,1000);
 })();
 
-/* SCROLL REVEALS — fade in only */
-(function(){
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
-  },{threshold:0.2,rootMargin:'0px 0px -100px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-})();
-
-/* PARALLAX */
-(function(){
-  const imgs=document.querySelectorAll('.parallax-img');
-  if(!imgs.length)return;
-  let ticking=false;
-  function update(){
-    const vh=window.innerHeight;
-    imgs.forEach(img=>{
-      const rect=img.parentElement.getBoundingClientRect();
-      if(rect.bottom>0&&rect.top<vh){
-        img.style.transform='translateY('+(rect.top*0.25)+'px)';
-      }
-    });
-    ticking=false;
-  }
-  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}});
-})();
 
 /* DAILY SNIPPET */
 (function(){
