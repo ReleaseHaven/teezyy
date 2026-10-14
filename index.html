@@ -24,7 +24,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --black:#000;--dark:#0a0a0a;--darker:#111;--gray:#1a1a1a;
-  --white:#fff;--text:#c8c8c8;--muted:#666;--dim:#444;
+  --white:#fff;--text:#d6d6d6;--muted:#777;--dim:#555;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -291,6 +291,7 @@ body::after{
 .youtube-section{
   padding:clamp(40px,8vh,100px) 20px;
   max-width:800px;margin:0 auto;
+
 }
 .video-stack{
   display:flex;flex-direction:column;
@@ -358,7 +359,16 @@ body::after{
   .img-offset-2{max-width:100%;margin-left:0;margin-right:0;margin-top:0;transform:translateY(-40px)}
   .img-wrap{height:clamp(320px,28vw,480px)}
   .video-stack{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .video-stack .video-wrap:last-child{grid-column:1/-1}
+  .video-stack .video-wrap:first-child{grid-column:1/-1}
+}
+
+/* ===== MOBILE ONLY ===== */
+@media(max-width:767px){
+  .hero-content{margin-top:-6vh}
+  .btn-hero{padding:20px 52px;font-size:1.1rem;margin-top:44px}
+  .social-bar{padding:20px 20px 30px}
+  .img-wrap{height:220px}
+  .youtube-section{margin-top:-80px;position:relative;z-index:2}
 }
 
 /* SCROLLBAR */
@@ -370,13 +380,55 @@ body::after{
 .page-loader{
   position:fixed;inset:0;background:var(--black);z-index:99999;
   display:flex;align-items:center;justify-content:center;
-  transition:opacity 0.6s ease,visibility 0.6s ease;
+  transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),visibility 0.8s;
 }
 .page-loader.done{opacity:0;visibility:hidden;pointer-events:none}
 .loader-text{
-  font-family:'Clash Display',sans-serif;font-weight:600;
-  font-size:clamp(2rem,6vw,3.5rem);color:var(--white);
-  animation:breathe 1.5s ease-in-out infinite;
+  font-family:'Clash Display',sans-serif;font-weight:700;
+  font-size:clamp(3.5rem,12vw,7rem);color:var(--white);
+  letter-spacing:0.08em;
+  position:relative;
+  animation:loaderReveal 3.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+.loader-text::before,.loader-text::after{
+  content:'TEEZYY';position:absolute;top:0;left:0;width:100%;height:100%;
+  overflow:hidden;
+}
+.loader-text::before{
+  color:var(--white);
+  animation:loaderScan 1.8s steps(1) infinite;
+  clip-path:inset(0);
+}
+.loader-text::after{
+  color:rgba(255,255,255,0.15);
+  animation:loaderShadow 2.4s ease-in-out infinite;
+}
+@keyframes loaderReveal{
+  0%{opacity:0;letter-spacing:0.5em;filter:blur(8px)}
+  40%{opacity:1;letter-spacing:0.12em;filter:blur(0)}
+  55%{letter-spacing:0.06em;transform:scaleX(1)}
+  60%{transform:scaleX(1.02) skewX(-1deg)}
+  65%{transform:scaleX(0.99) skewX(0.5deg)}
+  70%{transform:scaleX(1) skewX(0)}
+  100%{letter-spacing:0.08em}
+}
+@keyframes loaderScan{
+  0%{clip-path:inset(0 0 95% 0)}
+  10%{clip-path:inset(30% 0 50% 0)}
+  15%{clip-path:inset(0)}
+  20%{clip-path:inset(70% 0 10% 0)}
+  25%{clip-path:inset(0)}
+  40%{clip-path:inset(0)}
+  42%{clip-path:inset(15% 0 75% 0);transform:translateX(3px)}
+  44%{clip-path:inset(80% 0 5% 0);transform:translateX(-2px)}
+  46%{clip-path:inset(0);transform:translateX(0)}
+  100%{clip-path:inset(0)}
+}
+@keyframes loaderShadow{
+  0%,100%{transform:translateX(0);opacity:0}
+  30%{transform:translateX(4px) skewX(-2deg);opacity:0.15}
+  60%{transform:translateX(-3px) skewX(1deg);opacity:0.1}
+  90%{transform:translateX(0);opacity:0}
 }
 </style>
 </head>
@@ -492,13 +544,13 @@ body::after{
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">VIDEOS</div>
   <div class="video-stack">
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -536,7 +588,7 @@ body::after{
 <script>
 /* PAGE LOADER */
 window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('page-loader').classList.add('done'),600);
+  setTimeout(()=>document.getElementById('page-loader').classList.add('done'),2800);
 });
 
 /* COUNTDOWN — simple, no animation on numbers */
