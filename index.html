@@ -595,10 +595,8 @@ body::after{
 </footer>
 
 <script>
-/* PAGE LOADER */
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1800);
-});
+/* PAGE LOADER — dismiss after animation, don't wait for all assets */
+setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600);
 
 /* COUNTDOWN — simple, no animation on numbers */
 (function(){
