@@ -1,87 +1,80 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TEEZYY — TIME IS MONEY</title>
-<meta name="description" content="TEEZYY — TIME IS MONEY. Album drops 13. november 2026.">
+<meta name="description" content="TEEZYY — TIME IS MONEY. Album dropping November 13, 2026. Pre-save now.">
 <meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TEEZYY">
+<meta property="og:title" content="TEEZYY — TIME IS MONEY">
+<meta property="og:description" content="Album dropping November 13, 2026. Pre-save now.">
+<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#000;--dark:#0a0a0a;--darker:#111;--gray:#1a1a1a;--white:#fff;--muted:#888}
+:root{
+  --black:#000;--dark:#0a0a0a;--darker:#111;--gray:#1a1a1a;
+  --white:#fff;--text:#c8c8c8;--muted:#666;--dim:#444;
+}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--black);color:var(--white);font-family:'Inter Tight',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{
+  background:var(--black);color:var(--text);
+  font-family:'Inter Tight',system-ui,sans-serif;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
 
-/* GRAIN OVERLAY */
+/* GRAIN */
 body::after{
   content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
   background-repeat:repeat;background-size:128px 128px;
-  pointer-events:none;z-index:9999;opacity:0.4;
-  animation:grain 0.5s steps(6) infinite;
+  pointer-events:none;z-index:9999;opacity:0.35;
+  animation:grain 0.8s steps(4) infinite;
 }
 @keyframes grain{
   0%,100%{transform:translate(0,0)}
-  10%{transform:translate(-5%,-10%)}
-  20%{transform:translate(-15%,5%)}
-  30%{transform:translate(7%,-25%)}
-  40%{transform:translate(-5%,25%)}
-  50%{transform:translate(-15%,10%)}
-  60%{transform:translate(15%,0%)}
-  70%{transform:translate(0%,15%)}
-  80%{transform:translate(3%,35%)}
-  90%{transform:translate(-10%,10%)}
+  25%{transform:translate(-5%,-10%)}
+  50%{transform:translate(7%,-20%)}
+  75%{transform:translate(-3%,15%)}
 }
 
-/* GLITCH EFFECT */
-@keyframes glitch{
-  0%{clip-path:inset(40% 0 61% 0);transform:translate(-2px,0)}
-  2%{clip-path:inset(92% 0 1% 0);transform:translate(2px,0)}
-  4%{clip-path:inset(43% 0 1% 0);transform:translate(-1px,0)}
-  5%{clip-path:inset(25% 0 58% 0);transform:translate(0)}
-  6%{clip-path:inset(54% 0 7% 0);transform:translate(3px,0)}
-  7%{clip-path:inset(0);transform:translate(0)}
-  100%{clip-path:inset(0);transform:translate(0)}
+/* TYPOGRAPHY */
+.label{
+  font-family:'Inter Tight',sans-serif;font-size:clamp(0.6rem,1.4vw,0.75rem);
+  letter-spacing:0.35em;text-transform:uppercase;color:var(--muted);font-weight:500;
 }
-@keyframes glitch2{
-  0%{clip-path:inset(65% 0 13% 0);transform:translate(3px,0)}
-  3%{clip-path:inset(15% 0 62% 0);transform:translate(-3px,0)}
-  5%{clip-path:inset(82% 0 2% 0);transform:translate(1px,0)}
-  6%{clip-path:inset(0);transform:translate(0)}
-  100%{clip-path:inset(0);transform:translate(0)}
-}
-@keyframes glitchPulse{
-  0%,100%{opacity:1}
-  50%{opacity:0.97}
-  92%{opacity:1}
-  93%{opacity:0.7;transform:skewX(-2deg)}
-  94%{opacity:1;transform:skewX(0)}
-}
-@keyframes countPulse{
-  0%,100%{text-shadow:0 0 10px rgba(255,255,255,0.1)}
-  50%{text-shadow:0 0 20px rgba(255,255,255,0.3),0 0 40px rgba(255,255,255,0.1)}
-}
-@keyframes btnGlitch{
-  0%,100%{transform:translate(0);filter:none}
-  96%{transform:translate(0);filter:none}
-  97%{transform:translate(-3px,1px);filter:hue-rotate(90deg)}
-  98%{transform:translate(3px,-1px);filter:hue-rotate(-90deg)}
-  99%{transform:translate(-1px,-2px);filter:none}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes breathe{0%,100%{opacity:0.6}50%{opacity:1}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{box-shadow:0 0 20px 2px rgba(255,255,255,0.08)}
 }
 
 /* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(60px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
-.reveal.from-left{transform:translateX(-80px) translateY(0)}
-.reveal.from-right{transform:translateX(80px) translateY(0)}
-.reveal.visible{opacity:1;transform:translate(0)}
+.reveal{
+  opacity:0;
+  transition:opacity 1s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible{opacity:1}
 .reveal.delay-1{transition-delay:0.15s}
 .reveal.delay-2{transition-delay:0.3s}
 .reveal.delay-3{transition-delay:0.45s}
 
-/* ============ HERO ============ */
+/* ===== HERO ===== */
 .hero{
   position:relative;width:100%;height:100vh;height:100dvh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -89,454 +82,509 @@ body::after{
 }
 .hero-bg{
   position:absolute;top:0;left:0;width:100%;height:100%;
-  background:url('images/hero.jpeg') center center/cover no-repeat;
-  filter:brightness(0.35) contrast(1.1);
+  background:url('images/hero.jpeg') center 30%/cover no-repeat;
+  filter:brightness(0.45) contrast(1.1);
   transform:scale(1.05);
 }
 .hero-overlay{
   position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 40%,rgba(0,0,0,0.7) 80%,rgba(0,0,0,1) 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.05) 35%,rgba(0,0,0,0.5) 75%,rgba(0,0,0,1) 100%);
 }
-.hero-content{position:relative;z-index:2;text-align:center;padding:0 20px}
-
+.hero-content{
+  position:relative;z-index:2;text-align:center;padding:0 20px;
+  animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+}
 .hero-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(5rem,18vw,14rem);
-  letter-spacing:0.08em;
-  line-height:0.85;
-  position:relative;
-  animation:glitchPulse 4s infinite;
+  font-family:'Clash Display',sans-serif;font-weight:700;
+  font-size:clamp(4.5rem,17vw,13rem);
+  letter-spacing:0.04em;line-height:0.85;color:var(--text);
 }
-.hero-title::before,.hero-title::after{
-  content:'TEEZYY';position:absolute;top:0;left:0;width:100%;height:100%;
-}
-.hero-title::before{
-  color:var(--white);animation:glitch 3s infinite linear;
-  text-shadow:2px 0 #ff0040;
-}
-.hero-title::after{
-  color:var(--white);animation:glitch2 3s infinite linear;
-  text-shadow:-2px 0 #0ff;
-}
-
 .hero-subtitle{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(1.2rem,4vw,2.4rem);
+  font-family:'Clash Display',sans-serif;font-weight:500;
+  font-size:clamp(1rem,3.5vw,2rem);
   letter-spacing:0.35em;
-  color:var(--muted);
-  margin-top:12px;
+  color:var(--dim);margin-top:clamp(16px,3vh,24px);
+  animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+}
+.hero-dropping{
+  font-family:'Inter Tight',sans-serif;font-weight:500;
+  font-size:clamp(0.65rem,1.6vw,0.85rem);
+  letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--muted);margin-top:clamp(28px,5vh,40px);
+  animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 0.8s both;
 }
 
 /* COUNTDOWN */
 .countdown{
-  display:flex;gap:clamp(12px,4vw,32px);
-  margin-top:clamp(28px,6vh,48px);
-  justify-content:center;
+  display:flex;gap:clamp(16px,5vw,40px);
+  margin-top:clamp(16px,2.5vh,24px);justify-content:center;
+  animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 0.9s both;
 }
 .countdown-unit{text-align:center}
 .countdown-num{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.4rem,8vw,5rem);
-  line-height:1;
-  animation:countPulse 2s ease-in-out infinite;
-  position:relative;
-}
-.countdown-num::after{
-  content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
-  width:80%;height:1px;background:rgba(255,255,255,0.15);
+  font-family:'Clash Display',sans-serif;font-weight:600;
+  font-size:clamp(2.2rem,7vw,4.5rem);line-height:1;
+  color:var(--text);
 }
 .countdown-label{
-  font-size:clamp(0.55rem,1.5vw,0.75rem);
-  letter-spacing:0.3em;text-transform:uppercase;
-  color:var(--muted);margin-top:8px;font-weight:600;
+  font-size:clamp(0.5rem,1.3vw,0.65rem);
+  letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--muted);margin-top:8px;font-weight:500;
+}
+.countdown-divider{
+  font-family:'Clash Display',sans-serif;font-weight:300;
+  font-size:clamp(1.8rem,5vw,3.5rem);
+  color:var(--dim);align-self:flex-start;margin-top:4px;
 }
 
-/* PRE-SAVE BTN */
-.btn-presave{
-  display:inline-block;margin-top:clamp(28px,6vh,48px);
-  padding:14px 40px;
-  border:1px solid rgba(255,255,255,0.5);
-  color:var(--white);text-decoration:none;
-  font-family:'Bebas Neue',sans-serif;
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  padding:18px 56px;
+  border:1px solid rgba(255,255,255,0.25);
+  color:var(--text);text-decoration:none;
+  font-family:'Clash Display',sans-serif;font-weight:500;
   font-size:clamp(1rem,2.5vw,1.3rem);
-  letter-spacing:0.25em;
-  transition:all 0.3s ease;
+  letter-spacing:0.2em;text-transform:uppercase;
+  transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
   position:relative;overflow:hidden;
   background:transparent;cursor:pointer;
 }
-.btn-presave:hover{
-  background:var(--white);color:var(--black);
-  animation:btnGlitch 0.4s ease;
+.btn::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:var(--white);transform:translateX(-101%);
+  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);z-index:-1;
 }
-.btn-presave::before{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
-  transition:left 0.5s ease;
+.btn:hover{color:var(--black);border-color:var(--white)}
+.btn:hover::before{transform:translateX(0)}
+.btn-hero{
+  animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 1.2s both;
+  margin-top:clamp(36px,6vh,56px);
 }
-.btn-presave:hover::before{left:100%}
+.btn-large{padding:22px 64px;font-size:clamp(1.1rem,3vw,1.5rem)}
 
-/* ============ IMAGE SECTION ============ */
-.image-section{
-  padding:clamp(60px,12vh,140px) 20px;
-  max-width:1200px;margin:0 auto;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:clamp(24px,4vw,48px);
+/* ===== SOCIAL BAR ===== */
+.social-bar{padding:clamp(40px,7vh,70px) 20px;text-align:center}
+.social-links{display:flex;justify-content:center;gap:clamp(28px,6vw,52px)}
+.social-links a{
+  color:var(--dim);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+  display:block;position:relative;
+}
+.social-links a::after{
+  content:'';position:absolute;bottom:-8px;left:50%;width:0;height:1px;
+  background:var(--white);transition:all 0.3s ease;transform:translateX(-50%);
+}
+.social-links a:hover{color:var(--white);transform:translateY(-3px) scale(1.1)}
+.social-links a:hover::after{width:100%}
+.social-links svg{width:48px;height:48px;fill:currentColor}
+
+/* ===== PHOTO GALLERY (skyline = background) ===== */
+.gallery-skyline{
+  position:relative;width:100%;overflow:hidden;
+}
+.gallery-skyline img{
+  width:100%;display:block;
+  filter:grayscale(100%) brightness(0.35) contrast(1.1);
+}
+.gallery-skyline::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:30%;
+  background:linear-gradient(180deg,var(--black),transparent);z-index:1;pointer-events:none;
+}
+.gallery-photos{
+  position:relative;z-index:2;
+  margin-top:clamp(-140px,-18vw,-260px);
+  padding:0 20px clamp(60px,10vh,120px);
+  max-width:1100px;margin-left:auto;margin-right:auto;
+}
+.gallery-photos-grid{
+  display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,40px);
+}
+.gallery-grid{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,40px);
+  max-width:1100px;margin:0 auto;
 }
 .img-wrap{
   overflow:hidden;position:relative;
+  height:clamp(300px,50vw,440px);
 }
 .img-wrap img{
-  width:100%;height:auto;display:block;
-  filter:grayscale(100%) contrast(1.05);
-  transition:transform 0.8s cubic-bezier(0.16,1,0.3,1),filter 0.8s ease;
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;
+  filter:grayscale(100%) contrast(1.05) brightness(0.85);
+  transition:transform 1.2s cubic-bezier(0.16,1,0.3,1),filter 1.2s ease;
+}
+.img-wrap::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 15%,rgba(0,0,0,0.85) 100%);
 }
 .img-wrap:hover img{
-  transform:scale(1.03);
-  filter:grayscale(80%) contrast(1.1);
+  transform:scale(1.04);
+  filter:grayscale(70%) contrast(1.1) brightness(0.9);
 }
-.img-asymmetric{
-  max-width:85%;
-}
-.img-asymmetric:nth-child(odd){margin-left:auto}
-.img-asymmetric:nth-child(even){margin-right:auto}
+.img-offset-1{max-width:72%;margin-left:4%}
+.img-offset-2{max-width:65%;margin-left:auto;margin-right:6%;margin-top:-40px}
 
-/* ============ DAILY SNIPPET ============ */
+/* ===== POOL ===== */
+.pool-wrap{
+  position:relative;width:100%;height:clamp(250px,40vh,400px);overflow:hidden;
+}
+.pool-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;
+  filter:grayscale(100%) brightness(0.35) contrast(1.15);
+}
+.pool-wrap::after{
+  content:'';position:absolute;bottom:0;left:0;width:100%;height:50%;
+  background:linear-gradient(0deg,var(--black),transparent);
+  pointer-events:none;
+}
+
+/* ===== DAILY SNIPPET ===== */
 .snippet-section{
   padding:clamp(60px,10vh,120px) 20px;
-  max-width:700px;margin:0 auto;
+  max-width:600px;margin:0 auto;
   display:none;
 }
 .snippet-section.active{display:block}
-.snippet-header{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(0.7rem,2vw,0.85rem);
-  letter-spacing:0.4em;color:var(--muted);
-  margin-bottom:6px;
-}
 .snippet-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,6vw,3.5rem);
-  letter-spacing:0.05em;
-  margin-bottom:clamp(20px,4vh,36px);
-}
-.audio-player{
-  display:flex;align-items:center;gap:16px;
-  padding:16px 20px;
-  background:var(--gray);
-  border:1px solid rgba(255,255,255,0.06);
-}
-.play-btn{
-  width:44px;height:44px;
-  background:none;border:1px solid rgba(255,255,255,0.3);
-  color:var(--white);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:all 0.2s ease;
-}
-.play-btn:hover{border-color:var(--white);background:rgba(255,255,255,0.05)}
-.play-btn svg{width:18px;height:18px;fill:currentColor}
-.progress-wrap{
-  flex:1;height:3px;background:rgba(255,255,255,0.12);
-  cursor:pointer;position:relative;
-}
-.progress-bar{
-  height:100%;width:0%;background:var(--white);
-  transition:width 0.1s linear;
-}
-.audio-time{
-  font-size:0.75rem;color:var(--muted);font-variant-numeric:tabular-nums;
-  min-width:36px;text-align:right;
-}
-
-/* ============ SPOTIFY ============ */
-.spotify-section{
-  padding:clamp(40px,8vh,100px) 20px;
-  max-width:700px;margin:0 auto;
-}
-.section-label{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(0.65rem,1.5vw,0.8rem);
-  letter-spacing:0.4em;color:var(--muted);
+  font-family:'Clash Display',sans-serif;font-weight:600;
+  font-size:clamp(1.6rem,5vw,2.8rem);
+  color:var(--text);letter-spacing:0.02em;
   margin-bottom:clamp(16px,3vh,28px);
 }
-.spotify-section iframe{
-  width:100%;border:none;border-radius:12px;
+.snippet-track{
+  font-family:'Inter Tight',sans-serif;font-size:0.8rem;
+  color:var(--muted);letter-spacing:0.1em;margin-bottom:clamp(12px,2vh,20px);
 }
+.audio-player{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  animation:pulseGlow 4s ease-in-out infinite;
+}
+.play-btn{
+  width:42px;height:42px;
+  background:none;border:1px solid rgba(255,255,255,0.2);
+  color:var(--text);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all 0.3s ease;
+}
+.play-btn:hover{border-color:var(--white);color:var(--white);background:rgba(255,255,255,0.04)}
+.play-btn svg{width:16px;height:16px;fill:currentColor}
+.progress-wrap{flex:1;height:2px;background:rgba(255,255,255,0.1);cursor:pointer;position:relative}
+.progress-bar{height:100%;width:0%;background:var(--white);transition:width 0.1s linear}
+.audio-time{font-size:0.7rem;color:var(--muted);font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+.waveform{display:flex;align-items:center;gap:2px;height:24px;margin-top:12px}
+.waveform-bar{width:3px;background:rgba(255,255,255,0.15);border-radius:1px;transition:height 0.2s ease}
+.waveform-bar.active{background:var(--white)}
 
-/* ============ YOUTUBE ============ */
+/* ===== SPOTIFY ===== */
+.spotify-section{
+  padding:clamp(40px,8vh,100px) 20px;
+  max-width:650px;margin:0 auto;
+}
+.spotify-section iframe{width:100%;border:none;border-radius:12px}
+
+/* ===== YOUTUBE ===== */
 .youtube-section{
   padding:clamp(40px,8vh,100px) 20px;
-  max-width:900px;margin:0 auto;
+  max-width:800px;margin:0 auto;
 }
-.video-grid{
-  display:grid;grid-template-columns:1fr;
+.video-stack{
+  display:flex;flex-direction:column;
   gap:clamp(16px,3vw,28px);
 }
 .video-wrap{
   position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
   background:var(--darker);
 }
-.video-wrap iframe{
-  position:absolute;top:0;left:0;width:100%;height:100%;border:none;
-}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
 
-/* ============ PRESAVE CTA ============ */
+/* ===== PRESAVE CTA ===== */
 .presave-section{
   padding:clamp(80px,14vh,160px) 20px;
-  text-align:center;
-  position:relative;overflow:hidden;
+  text-align:center;position:relative;overflow:hidden;
 }
 .presave-section::before{
   content:'';position:absolute;top:0;left:0;width:100%;height:100%;
   background:url('images/city-dark.jpg') center center/cover no-repeat;
-  filter:grayscale(100%) brightness(0.15) contrast(1.2);
+  filter:grayscale(100%) brightness(0.25) contrast(1.1);
   transform:scale(1.1);
 }
 .presave-section::after{
   content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(180deg,var(--black),rgba(0,0,0,0.6),var(--black));
+  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.5) 50%,var(--black) 100%);
 }
 .presave-inner{position:relative;z-index:2}
 .presave-big{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3rem,12vw,9rem);
-  letter-spacing:0.06em;line-height:0.9;
-  margin-bottom:clamp(24px,5vh,48px);
+  font-family:'Clash Display',sans-serif;font-weight:700;
+  font-size:clamp(3rem,13vw,10rem);
+  letter-spacing:0.03em;line-height:0.88;color:var(--text);
+  margin-bottom:10px;
 }
-.presave-sub{
-  font-size:clamp(0.8rem,2vw,1rem);
+.presave-album{
+  font-family:'Clash Display',sans-serif;font-weight:500;
+  font-size:clamp(0.9rem,2.5vw,1.4rem);
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:4px;
+}
+.presave-date{
+  font-size:clamp(0.7rem,1.8vw,0.9rem);
   color:var(--muted);letter-spacing:0.15em;
-  margin-bottom:clamp(24px,4vh,40px);
+  margin-bottom:clamp(32px,6vh,56px);
   text-transform:uppercase;
 }
 
-/* ============ FOOTER ============ */
+/* ===== FOOTER ===== */
 .footer{
-  padding:clamp(40px,8vh,80px) 20px clamp(30px,5vh,50px);
+  padding:clamp(50px,8vh,80px) 20px clamp(40px,6vh,60px);
   text-align:center;
-  border-top:1px solid rgba(255,255,255,0.05);
 }
-.social-links{
-  display:flex;justify-content:center;
-  gap:clamp(20px,4vw,36px);
+.footer-line{
+  width:30px;height:1px;background:rgba(255,255,255,0.1);
+  margin:0 auto clamp(20px,3vh,32px);
 }
-.social-links a{
-  color:rgba(255,255,255,0.5);
-  transition:color 0.3s ease,transform 0.3s ease;
-  display:block;
-}
-.social-links a:hover{color:var(--white);transform:translateY(-2px)}
-.social-links svg{width:24px;height:24px;fill:currentColor}
+.footer-copy{font-size:0.65rem;color:var(--muted);letter-spacing:0.2em;margin-top:20px}
 
-/* PARALLAX */
-.parallax-bg{
-  position:relative;overflow:hidden;
-}
-.parallax-bg .parallax-img{
-  position:absolute;top:-30%;left:0;width:100%;height:160%;
-  object-fit:cover;
-  filter:grayscale(100%) brightness(0.2) contrast(1.2);
-  will-change:transform;
-}
-
-/* DIVIDER LINE */
-.divider{
-  width:40px;height:1px;background:rgba(255,255,255,0.15);
-  margin:0 auto;
-}
-
-/* ============ DESKTOP ============ */
+/* ===== DESKTOP ===== */
 @media(min-width:768px){
-  .image-section{
+  .gallery-photos-grid{
     grid-template-columns:1fr 1fr;
     gap:clamp(24px,3vw,48px);
-    align-items:end;
   }
-  .img-asymmetric{max-width:100%}
-  .img-asymmetric:nth-child(odd){margin:0;transform:translateY(-40px)}
-  .img-asymmetric:nth-child(even){margin:0;transform:translateY(40px)}
-  .video-grid{grid-template-columns:1fr 1fr}
-}
-@media(min-width:1024px){
-  .image-section{max-width:1100px}
+  .img-offset-1{max-width:100%;margin-left:0;transform:translateY(40px)}
+  .img-offset-2{max-width:100%;margin-left:0;margin-right:0;margin-top:0;transform:translateY(-40px)}
+  .img-wrap{height:clamp(320px,28vw,480px)}
+  .video-stack{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .video-stack .video-wrap:last-child{grid-column:1/-1}
 }
 
 /* SCROLLBAR */
-::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--black)}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
+/* LOADER */
+.page-loader{
+  position:fixed;inset:0;background:var(--black);z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease,visibility 0.6s ease;
+}
+.page-loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-text{
+  font-family:'Clash Display',sans-serif;font-weight:600;
+  font-size:clamp(2rem,6vw,3.5rem);color:var(--white);
+  animation:breathe 1.5s ease-in-out infinite;
+}
 </style>
 </head>
 <body>
 
-<!-- ======== HERO ======== -->
+<!-- LOADER -->
+<div class="page-loader" id="page-loader">
+  <div class="loader-text">TEEZYY</div>
+</div>
+
+<!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">TEEZYY</h1>
     <p class="hero-subtitle">TIME IS MONEY</p>
+    <p class="hero-dropping">ALBUM DROPPING</p>
     <div class="countdown" id="countdown">
       <div class="countdown-unit">
         <div class="countdown-num" id="cd-days">00</div>
-        <div class="countdown-label">Dage</div>
+        <div class="countdown-label">Days</div>
       </div>
+      <div class="countdown-divider">:</div>
       <div class="countdown-unit">
         <div class="countdown-num" id="cd-hours">00</div>
-        <div class="countdown-label">Timer</div>
+        <div class="countdown-label">Hours</div>
       </div>
+      <div class="countdown-divider">:</div>
       <div class="countdown-unit">
         <div class="countdown-num" id="cd-mins">00</div>
         <div class="countdown-label">Min</div>
       </div>
+      <div class="countdown-divider">:</div>
       <div class="countdown-unit">
         <div class="countdown-num" id="cd-secs">00</div>
-        <div class="countdown-label">Sek</div>
+        <div class="countdown-label">Sec</div>
       </div>
     </div>
-    <a href="#presave" class="btn-presave">PRE-SAVE</a>
+    <a href="#presave" class="btn btn-large btn-hero" id="hero-presave">PRE-SAVE</a>
   </div>
 </section>
 
-<!-- ======== IMAGE SECTION ======== -->
-<section class="image-section">
-  <div class="img-wrap img-asymmetric reveal from-left">
-    <img src="images/teezyy-counter.jpg" alt="Teezyy" loading="lazy">
+<!-- ===== SOCIAL LINKS ===== -->
+<div class="social-bar reveal">
+  <div class="social-links">
+    <a href="https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK" target="_blank" rel="noopener" aria-label="Spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/youngteezyy/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@YoungTeezyy" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@youngteezyyy" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+    </a>
   </div>
-  <div class="img-wrap img-asymmetric reveal from-right delay-1">
-    <img src="images/teezyy-motion.jpeg" alt="Teezyy in motion" loading="lazy">
-  </div>
-</section>
+</div>
 
-<!-- ======== DAILY SNIPPET ======== -->
+<!-- ===== SKYLINE (full image, fade at top) ===== -->
+<div class="gallery-skyline">
+  <img src="images/city-night.jpg" alt="" loading="lazy">
+</div>
+
+<!-- ===== PHOTOS (overlap bottom half of skyline) ===== -->
+<div class="gallery-photos">
+  <div class="gallery-photos-grid">
+    <div class="img-wrap img-offset-1">
+      <img src="images/teezyy-counter.jpg" alt="Teezyy" loading="lazy">
+    </div>
+    <div class="img-wrap img-offset-2">
+      <img src="images/teezyy-motion.jpeg" alt="Teezyy in motion" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAILY SNIPPET ===== -->
 <section class="snippet-section" id="snippet-section">
   <div class="reveal">
-    <div class="snippet-header">NEW SNIPPET</div>
+    <div class="label" style="margin-bottom:10px">NEW SNIPPET</div>
     <div class="snippet-title" id="snippet-date"></div>
+    <div class="snippet-track" id="snippet-track"></div>
     <div class="audio-player">
       <button class="play-btn" id="play-btn" aria-label="Play snippet">
-        <svg viewBox="0 0 24 24" id="play-icon"><polygon points="6,3 20,12 6,21"/></svg>
+        <svg viewBox="0 0 24 24" id="play-icon"><polygon points="7,3 21,12 7,21"/></svg>
       </button>
       <div class="progress-wrap" id="progress-wrap">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
       <div class="audio-time" id="audio-time">0:00</div>
     </div>
+    <div class="waveform" id="waveform"></div>
   </div>
 </section>
 
-<!-- ======== SPOTIFY ======== -->
+<!-- ===== SPOTIFY ===== -->
 <section class="spotify-section">
-  <div class="section-label reveal">MUSIK</div>
+  <div class="label reveal" style="margin-bottom:clamp(16px,3vh,28px)">MUSIC</div>
   <div class="reveal delay-1">
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1TV53wsca4C4mEd0miL1NK?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>
 </section>
 
-<!-- ======== YOUTUBE ======== -->
+<!-- ===== POOL ===== -->
+<div class="pool-wrap">
+  <img src="images/teezyy-pool.jpeg" alt="" loading="lazy">
+</div>
+
+<!-- ===== YOUTUBE ===== -->
 <section class="youtube-section">
-  <div class="section-label reveal">VIDEOER</div>
-  <div class="video-grid">
-    <div class="video-wrap reveal delay-1">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=YoungTeezyy&max-results=1" title="Teezyy video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">VIDEOS</div>
+  <div class="video-stack">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-  </div>
-  <div style="text-align:center;margin-top:clamp(20px,3vh,32px)">
-    <a href="https://www.youtube.com/@YoungTeezyy" target="_blank" rel="noopener" class="btn-presave reveal delay-2" style="font-size:0.85rem;padding:10px 28px">SE ALLE VIDEOER</a>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </div>
 </section>
 
-<!-- ======== PARALLAX DIVIDER ======== -->
-<div class="parallax-bg" style="height:40vh;min-height:250px">
-  <img class="parallax-img" src="images/teezyy-pool.jpeg" alt="" loading="lazy" style="filter:grayscale(100%) brightness(0.2) contrast(1.2)">
-</div>
-
-<!-- ======== PRE-SAVE CTA ======== -->
+<!-- ===== PRE-SAVE CTA ===== -->
 <section class="presave-section" id="presave">
   <div class="presave-inner">
     <div class="presave-big reveal">TIME IS<br>MONEY</div>
-    <div class="presave-sub reveal delay-1">ALBUMMET DROPPER 13. NOVEMBER 2026</div>
-    <a href="#" class="btn-presave reveal delay-2" id="presave-link">PRE-SAVE NU</a>
+    <div class="presave-album reveal delay-1">ALBUM DROPPING</div>
+    <div class="presave-date reveal delay-2">NOVEMBER 13, 2026</div>
+    <a href="#" class="btn btn-large reveal delay-3" id="presave-link" onclick="trackPresave()">PRE-SAVE NOW</a>
   </div>
 </section>
 
-<!-- ======== FOOTER ======== -->
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
+  <div class="footer-line"></div>
   <div class="social-links">
-    <!-- Spotify -->
     <a href="https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK" target="_blank" rel="noopener" aria-label="Spotify">
       <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
     </a>
-    <!-- Instagram -->
     <a href="https://www.instagram.com/youngteezyy/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
     </a>
-    <!-- YouTube -->
     <a href="https://www.youtube.com/@YoungTeezyy" target="_blank" rel="noopener" aria-label="YouTube">
       <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
-    <!-- TikTok -->
     <a href="https://www.tiktok.com/@youngteezyyy" target="_blank" rel="noopener" aria-label="TikTok">
       <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
     </a>
   </div>
+  <div class="footer-copy">&copy; 2026 TEEZYY</div>
 </footer>
 
 <script>
-/* ===== COUNTDOWN ===== */
+/* PAGE LOADER */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('page-loader').classList.add('done'),600);
+});
+
+/* COUNTDOWN — simple, no animation on numbers */
 (function(){
   const target=new Date('2026-11-13T00:00:00').getTime();
   const $d=document.getElementById('cd-days');
   const $h=document.getElementById('cd-hours');
   const $m=document.getElementById('cd-mins');
   const $s=document.getElementById('cd-secs');
-  function pad(n){return n<10?'0'+n:n}
+  function pad(n){return n<10?'0'+n:String(n)}
   function tick(){
-    const now=Date.now();
-    const diff=target-now;
+    const diff=target-Date.now();
     if(diff<=0){$d.textContent=$h.textContent=$m.textContent=$s.textContent='00';return}
-    const d=Math.floor(diff/864e5);
-    const h=Math.floor((diff%864e5)/36e5);
-    const m=Math.floor((diff%36e5)/6e4);
-    const s=Math.floor((diff%6e4)/1e3);
-    $d.textContent=pad(d);$h.textContent=pad(h);
-    $m.textContent=pad(m);$s.textContent=pad(s);
+    $d.textContent=pad(Math.floor(diff/864e5));
+    $h.textContent=pad(Math.floor((diff%864e5)/36e5));
+    $m.textContent=pad(Math.floor((diff%36e5)/6e4));
+    $s.textContent=pad(Math.floor((diff%6e4)/1e3));
   }
   tick();setInterval(tick,1000);
 })();
 
-/* ===== SCROLL REVEALS ===== */
+/* SCROLL REVEALS — fade in only */
 (function(){
   const obs=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
-  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+  },{threshold:0.2,rootMargin:'0px 0px -100px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
-/* ===== PARALLAX ===== */
+/* PARALLAX */
 (function(){
   const imgs=document.querySelectorAll('.parallax-img');
   if(!imgs.length)return;
   let ticking=false;
-  window.addEventListener('scroll',()=>{
-    if(!ticking){
-      requestAnimationFrame(()=>{
-        const scrollY=window.pageYOffset;
-        imgs.forEach(img=>{
-          const rect=img.parentElement.getBoundingClientRect();
-          const speed=0.3;
-          if(rect.bottom>0&&rect.top<window.innerHeight){
-            img.style.transform='translateY('+(rect.top*speed)+'px)';
-          }
-        });
-        ticking=false;
-      });
-      ticking=true;
-    }
-  });
+  function update(){
+    const vh=window.innerHeight;
+    imgs.forEach(img=>{
+      const rect=img.parentElement.getBoundingClientRect();
+      if(rect.bottom>0&&rect.top<vh){
+        img.style.transform='translateY('+(rect.top*0.25)+'px)';
+      }
+    });
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}});
 })();
 
-/* ===== DAILY SNIPPET ===== */
+/* DAILY SNIPPET */
 (function(){
   const section=document.getElementById('snippet-section');
   const today=new Date();
@@ -545,21 +593,44 @@ body::after{
   const d=String(today.getDate()).padStart(2,'0');
   const dateStr=y+'-'+m+'-'+d;
   const file='snippets/snippet-'+dateStr+'.mp3';
+
+  const trackNames={
+    '2026-11-06':'Backdoor',
+    '2026-11-07':'Cables Packed',
+    '2026-11-08':'Forever',
+    '2026-11-09':'Fully Prepared',
+    '2026-11-10':'Madden',
+    '2026-11-11':'Money & Motion',
+    '2026-11-12':'Stock'
+  };
+
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('snippet-date').textContent=months[today.getMonth()]+' '+parseInt(d)+', '+y;
+
+  const trackEl=document.getElementById('snippet-track');
+  if(trackNames[dateStr])trackEl.textContent=trackNames[dateStr]+' \u2014 30s preview';
+
   const audio=new Audio();
-  audio.preload='none';
-  audio.src=file;
+  audio.preload='none';audio.src=file;
 
-  const months=['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
-  document.getElementById('snippet-date').textContent=d+'. '+months[today.getMonth()]+' '+y;
-
-  /* Check if snippet file exists */
   fetch(file,{method:'HEAD'}).then(r=>{
     if(r.ok){
       section.classList.add('active');
       audio.preload='metadata';
       initPlayer();
+      buildWaveform();
     }
   }).catch(()=>{});
+
+  function buildWaveform(){
+    const wf=document.getElementById('waveform');
+    for(let i=0;i<40;i++){
+      const bar=document.createElement('div');
+      bar.className='waveform-bar';
+      bar.style.height=(Math.random()*16+4)+'px';
+      wf.appendChild(bar);
+    }
+  }
 
   function initPlayer(){
     const playBtn=document.getElementById('play-btn');
@@ -567,35 +638,41 @@ body::after{
     const progressWrap=document.getElementById('progress-wrap');
     const progressBar=document.getElementById('progress-bar');
     const timeEl=document.getElementById('audio-time');
+    const bars=()=>document.querySelectorAll('.waveform-bar');
     let playing=false;
 
-    function fmt(s){
-      const m=Math.floor(s/60);
-      const sec=Math.floor(s%60);
-      return m+':'+String(sec).padStart(2,'0');
-    }
+    function fmt(s){return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
 
     playBtn.addEventListener('click',()=>{
-      if(playing){audio.pause();playIcon.innerHTML='<polygon points="6,3 20,12 6,21"/>';playing=false}
+      if(playing){audio.pause();playIcon.innerHTML='<polygon points="7,3 21,12 7,21"/>';playing=false}
       else{audio.play();playIcon.innerHTML='<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';playing=true}
     });
     audio.addEventListener('timeupdate',()=>{
-      if(audio.duration){
-        progressBar.style.width=(audio.currentTime/audio.duration*100)+'%';
-        timeEl.textContent=fmt(audio.currentTime);
-      }
+      if(!audio.duration)return;
+      const pct=audio.currentTime/audio.duration;
+      progressBar.style.width=(pct*100)+'%';
+      timeEl.textContent=fmt(audio.currentTime);
+      const b=bars();
+      const activeCount=Math.floor(pct*b.length);
+      b.forEach((bar,i)=>bar.classList.toggle('active',i<activeCount));
     });
     audio.addEventListener('ended',()=>{
-      playing=false;playIcon.innerHTML='<polygon points="6,3 20,12 6,21"/>';
+      playing=false;playIcon.innerHTML='<polygon points="7,3 21,12 7,21"/>';
       progressBar.style.width='0%';timeEl.textContent='0:00';
+      bars().forEach(b=>b.classList.remove('active'));
     });
     progressWrap.addEventListener('click',(e)=>{
       const rect=progressWrap.getBoundingClientRect();
-      const pct=(e.clientX-rect.left)/rect.width;
-      if(audio.duration)audio.currentTime=pct*audio.duration;
+      if(audio.duration)audio.currentTime=(e.clientX-rect.left)/rect.width*audio.duration;
     });
   }
 })();
+
+/* PRE-SAVE TRACKING */
+function trackPresave(){
+  if(typeof gtag==='function')gtag('event','presave_click',{event_category:'engagement'});
+}
+document.getElementById('hero-presave').addEventListener('click',trackPresave);
 </script>
 
 </body>
