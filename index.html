@@ -268,45 +268,101 @@ body::after{
   background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.2) 35%,rgba(0,0,0,0.35) 65%,var(--black) 100%);
 }
 
+/* ===== TRACKLIST ===== */
+.tracklist-section{
+  padding:clamp(48px,9vh,110px) 20px clamp(64px,11vh,130px);
+  max-width:1100px;margin:0 auto;
+}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:clamp(20px,4vh,40px)}
+.tl-list{list-style:none;counter-reset:none}
+.tl-row{
+  display:grid;grid-template-columns:clamp(30px,6vw,64px) 1fr;align-items:baseline;
+  padding:clamp(12px,1.8vh,18px) 0;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.tl-row:last-child{border-bottom:1px solid rgba(255,255,255,0.07)}
+.tl-num{
+  font-family:'Inter Tight',sans-serif;font-weight:500;font-variant-numeric:tabular-nums;
+  font-size:clamp(0.75rem,1.6vw,1rem);color:var(--dim);letter-spacing:0.1em;
+}
+.tl-title{
+  font-family:'Clash Display',sans-serif;font-weight:600;text-transform:uppercase;
+  font-size:clamp(1.85rem,8.2vw,5.4rem);line-height:0.95;letter-spacing:0.01em;
+  color:var(--text);overflow-wrap:anywhere;
+  transition:color 0.3s ease,transform 0.5s cubic-bezier(0.16,1,0.3,1);display:inline-block;
+}
+.tl-feat{
+  display:inline-block;margin-left:0.6em;vertical-align:middle;
+  font-family:'Inter Tight',sans-serif;font-weight:500;
+  font-size:clamp(0.6rem,1.3vw,0.85rem);letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+.tl-today{
+  display:flex;width:fit-content;align-items:center;gap:6px;margin-top:10px;
+  font-family:'Inter Tight',sans-serif;font-weight:600;
+  font-size:clamp(0.55rem,1.2vw,0.7rem);letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--black);background:var(--text);padding:5px 8px 5px 9px;text-decoration:none;white-space:nowrap;
+}
+.tl-today::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--black);animation:breathe 1.6s ease-in-out infinite}
+@media(hover:hover){.tl-row:hover .tl-title{color:var(--white);transform:translateX(8px)}}
+
 /* ===== DAILY SNIPPET ===== */
 .snippet-section{
-  padding:clamp(60px,10vh,120px) 20px;
-  max-width:600px;margin:0 auto;
-  display:none;
+  padding:clamp(72px,12vh,140px) 20px;
+  max-width:640px;margin:0 auto;
 }
-.snippet-section.active{display:block}
-.snippet-title{
-  font-family:'Clash Display',sans-serif;font-weight:600;
-  font-size:clamp(1.6rem,5vw,2.8rem);
-  color:var(--text);letter-spacing:0.02em;
-  margin-bottom:clamp(16px,3vh,28px);
+.snippet-section[hidden]{display:none}
+.snip-head{display:flex;justify-content:space-between;align-items:baseline}
+.snip-title{
+  font-family:'Clash Display',sans-serif;font-weight:600;text-transform:uppercase;
+  font-size:clamp(2.6rem,12vw,5.2rem);line-height:0.92;letter-spacing:0.01em;
+  color:var(--text);margin-top:clamp(14px,2.5vh,22px);overflow-wrap:anywhere;
 }
-.snippet-track{
-  font-family:'Inter Tight',sans-serif;font-size:0.8rem;
-  color:var(--muted);letter-spacing:0.1em;margin-bottom:clamp(12px,2vh,20px);
+.snip-feat{
+  font-size:clamp(0.65rem,1.6vw,0.8rem);letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);margin-top:12px;font-weight:500;
 }
-.audio-player{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 18px;
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.06);
-  animation:pulseGlow 4s ease-in-out infinite;
+.snip-feat:empty{display:none}
+.snip-player{
+  display:flex;align-items:center;gap:clamp(16px,4vw,24px);
+  margin-top:clamp(28px,5vh,44px);
 }
-.play-btn{
-  width:42px;height:42px;
-  background:none;border:1px solid rgba(255,255,255,0.2);
-  color:var(--text);cursor:pointer;
+.snip-play{
+  width:64px;height:64px;flex-shrink:0;border-radius:50%;border:none;cursor:pointer;
+  background:var(--text);color:var(--black);
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:all 0.3s ease;
+  transition:transform 0.25s cubic-bezier(0.16,1,0.3,1),background 0.25s ease;
+  -webkit-tap-highlight-color:transparent;
 }
-.play-btn:hover{border-color:var(--white);color:var(--white);background:rgba(255,255,255,0.04)}
-.play-btn svg{width:16px;height:16px;fill:currentColor}
-.progress-wrap{flex:1;height:2px;background:rgba(255,255,255,0.1);cursor:pointer;position:relative}
-.progress-bar{height:100%;width:0%;background:var(--white);transition:width 0.1s linear}
-.audio-time{font-size:0.7rem;color:var(--muted);font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
-.waveform{display:flex;align-items:center;gap:2px;height:24px;margin-top:12px}
-.waveform-bar{width:3px;background:rgba(255,255,255,0.15);border-radius:1px;transition:height 0.2s ease}
-.waveform-bar.active{background:var(--white)}
+.snip-play:active{transform:scale(0.92)}
+@media(hover:hover){.snip-play:hover{background:var(--white);transform:scale(1.05)}}
+.snip-play svg{width:22px;height:22px;fill:currentColor}
+.snip-play .i-play{margin-left:3px}
+.snip-play .i-pause{display:none}
+.snip-play.is-playing .i-play{display:none}
+.snip-play.is-playing .i-pause{display:block}
+.snip-play.is-loading{animation:breathe 1s ease-in-out infinite}
+.snip-wave{
+  flex:1;height:56px;display:flex;align-items:center;gap:2px;cursor:pointer;
+  touch-action:pan-y;-webkit-tap-highlight-color:transparent;outline:none;
+}
+.snip-wave span{
+  flex:1;min-width:2px;border-radius:2px;background:rgba(255,255,255,0.16);
+  transition:background 0.15s linear;
+}
+.snip-wave span.on{background:var(--text)}
+.snip-wave:focus-visible{outline:1px solid rgba(255,255,255,0.3);outline-offset:6px}
+.snip-meta{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  margin-top:16px;padding-left:calc(64px + clamp(16px,4vw,24px));
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);
+  font-variant-numeric:tabular-nums;font-weight:500;
+}
+.snip-next{color:var(--dim);text-align:right}
+@media(max-width:420px){
+  .snip-meta{padding-left:0;flex-direction:column;align-items:flex-start;gap:6px}
+  .snip-next{text-align:left}
+}
 
 /* ===== SPOTIFY ===== */
 .spotify-section{
@@ -544,6 +600,15 @@ body::after{
   </div>
 </div>
 
+<!-- ===== TRACKLIST ===== -->
+<section class="tracklist-section" id="tracklist" aria-label="Tracklist">
+  <div class="tl-head">
+    <span class="label">Tracklist</span>
+    <span class="label">Time Is Money</span>
+  </div>
+  <ol class="tl-list" id="tl-list"></ol>
+</section>
+
 <!-- ===== SKYLINE (full image, fade at top) ===== -->
 <div class="gallery-skyline">
   <img src="images/city-night.jpg" alt="" loading="lazy">
@@ -568,21 +633,23 @@ body::after{
 </div>
 
 <!-- ===== DAILY SNIPPET ===== -->
-<section class="snippet-section" id="snippet-section">
-  <div class="reveal">
-    <div class="label" style="margin-bottom:10px">NEW SNIPPET</div>
-    <div class="snippet-title" id="snippet-date"></div>
-    <div class="snippet-track" id="snippet-track"></div>
-    <div class="audio-player">
-      <button class="play-btn" id="play-btn" aria-label="Play snippet">
-        <svg viewBox="0 0 24 24" id="play-icon"><polygon points="7,3 21,12 7,21"/></svg>
-      </button>
-      <div class="progress-wrap" id="progress-wrap">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="audio-time" id="audio-time">0:00</div>
-    </div>
-    <div class="waveform" id="waveform"></div>
+<section class="snippet-section" id="snippet-section" hidden>
+  <div class="snip-head">
+    <span class="label">Daily snippet</span>
+    <span class="label" id="snip-day"></span>
+  </div>
+  <h2 class="snip-title" id="snip-title"></h2>
+  <div class="snip-feat" id="snip-feat"></div>
+  <div class="snip-player">
+    <button class="snip-play" id="snip-play" type="button" aria-label="Play snippet">
+      <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+    </button>
+    <div class="snip-wave" id="snip-wave" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0"></div>
+  </div>
+  <div class="snip-meta">
+    <span id="snip-time">0:00 / 0:30</span>
+    <span class="snip-next" id="snip-next"></span>
   </div>
 </section>
 
@@ -727,98 +794,148 @@ function setReleasedState(){
 })();
 
 
-/* DAILY SNIPPET */
+/* ===== TRACKLIST ===== */
+const TRACKS=[
+  {t:'Money & Motion'},{t:'Stock'},{t:'Fully Prepared'},{t:'Cables Packed'},{t:'Madden'},
+  {t:'4Ever',ft:'Milez'},{t:'Ammo'},{t:'Rap More'},{t:'Tunnel',ft:'LF Scarz'}
+];
+
+/* ===== DAILY SNIPPETS =====
+   One per day (visitor's local date) until release. Add a day = add a line + drop the mp3 in /snippets.
+   w = real waveform (56 bars, 0-100) pre-computed from the mp3. */
+const SNIPPETS={
+  '2026-11-06':{t:'Money & Motion',w:[12,59,76,40,37,36,39,41,100,59,33,28,35,92,97,64,39,34,31,31,59,98,44,38,40,34,98,97,54,39,35,38,40,72,91,42,40,35,58,97,97,43,41,33,35,46,83,80,43,40,37,68,72,24,13,8]},
+  '2026-11-07':{t:'Stock',w:[30,72,86,63,52,95,86,94,95,84,61,66,76,98,96,97,76,46,84,88,92,96,94,70,42,74,96,99,95,90,57,65,96,91,91,92,82,57,65,84,97,100,92,60,50,95,88,89,99,85,63,58,54,58,40,17]},
+  '2026-11-08':{t:'Fully Prepared',w:[30,70,79,82,86,86,95,99,78,79,85,86,86,100,89,77,77,81,84,96,96,85,77,80,81,41,57,62,59,49,53,49,51,45,58,60,51,47,50,55,83,86,83,74,92,89,83,88,90,82,89,82,60,52,37,18]},
+  '2026-11-09':{t:'Madden',w:[32,69,98,81,84,92,48,50,84,90,90,89,68,85,93,100,82,86,89,51,48,91,81,91,89,63,90,95,97,84,86,83,46,47,91,81,91,91,63,90,98,94,85,86,79,45,52,96,80,89,91,59,74,58,40,14]},
+  '2026-11-10':{t:'4Ever',ft:'Milez',w:[32,68,89,80,43,51,73,81,94,90,53,50,55,87,90,89,85,39,50,66,88,94,92,62,49,56,100,88,87,88,50,47,58,90,92,88,62,46,52,82,86,86,93,45,45,50,93,90,92,68,31,48,78,52,36,19]},
+  '2026-11-11':{t:'TBA',w:[34,50,46,47,56,41,50,49,93,97,92,52,50,54,40,56,47,95,97,92,51,45,51,48,45,47,91,95,96,59,50,54,46,31,25,78,100,95,57,49,54,48,47,57,75,99,96,72,50,49,50,37,43,35,43,18]},
+  '2026-11-12':{t:'TBA',w:[34,63,69,85,43,49,43,96,95,92,60,50,83,95,85,81,71,32,39,74,86,94,94,47,45,88,90,88,86,60,24,47,82,85,82,93,36,56,95,84,90,89,45,38,39,90,86,86,82,38,58,100,59,56,37,8]}
+};
+const SNIP_DAYS=Object.keys(SNIPPETS).sort();
+
+function localDateStr(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,'');
+
+function renderTracklist(todayTitle){
+  const ol=document.getElementById('tl-list');if(!ol)return;
+  ol.innerHTML='';
+  TRACKS.forEach((tr,i)=>{
+    const li=document.createElement('li');li.className='tl-row';
+    const num=document.createElement('span');num.className='tl-num';num.textContent=String(i+1).padStart(2,'0');
+    const wrap=document.createElement('div');
+    const title=document.createElement('span');title.className='tl-title';title.textContent=tr.t;
+    wrap.appendChild(title);
+    if(tr.ft){const f=document.createElement('span');f.className='tl-feat';f.textContent='ft. '+tr.ft;wrap.appendChild(f)}
+    if(todayTitle&&norm(todayTitle)===norm(tr.t)){
+      const a=document.createElement('a');a.className='tl-today';a.href='#snippet-section';a.textContent='Snippet today';
+      wrap.appendChild(a);
+    }
+    li.appendChild(num);li.appendChild(wrap);ol.appendChild(li);
+  });
+}
+
 (function(){
   const section=document.getElementById('snippet-section');
-  const today=new Date();
-  const y=today.getFullYear();
-  const m=String(today.getMonth()+1).padStart(2,'0');
-  const d=String(today.getDate()).padStart(2,'0');
-  const dateStr=y+'-'+m+'-'+d;
-  const file='snippets/snippet-'+dateStr+'.mp3';
+  const $title=document.getElementById('snip-title');
+  const $feat=document.getElementById('snip-feat');
+  const $day=document.getElementById('snip-day');
+  const $play=document.getElementById('snip-play');
+  const $wave=document.getElementById('snip-wave');
+  const $time=document.getElementById('snip-time');
+  const $next=document.getElementById('snip-next');
+  const audio=new Audio();audio.preload='none';
+  let current=null,bars=[],duration=30,dragging=false;
 
-  const trackNames={
-    '2026-11-06':'Backdoor',
-    '2026-11-07':'Cables Packed',
-    '2026-11-08':'Forever',
-    '2026-11-09':'Fully Prepared',
-    '2026-11-10':'Madden',
-    '2026-11-11':'Money & Motion',
-    '2026-11-12':'Stock'
-  };
+  const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+  const pad=n=>String(n).padStart(2,'0');
 
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('snippet-date').textContent=months[today.getMonth()]+' '+parseInt(d)+', '+y;
+  function paint(t){
+    const pct=duration?Math.min(1,t/duration):0;
+    const on=Math.round(pct*bars.length);
+    for(let i=0;i<bars.length;i++)bars[i].classList.toggle('on',i<on);
+    $time.textContent=fmt(t)+' / '+fmt(duration);
+    $wave.setAttribute('aria-valuenow',Math.round(t));
+  }
 
-  const trackEl=document.getElementById('snippet-track');
-  if(trackNames[dateStr])trackEl.textContent=trackNames[dateStr]+' \u2014 30s preview';
-
-  const audio=new Audio();
-  audio.preload='none';audio.src=file;
-
-  fetch(file,{method:'HEAD'}).then(r=>{
-    if(r.ok){
-      section.classList.add('active');
-      audio.preload='metadata';
-      initPlayer();
-      buildWaveform();
-    }
-  }).catch(()=>{});
-
-  function buildWaveform(){
-    const wf=document.getElementById('waveform');
-    for(let i=0;i<40;i++){
-      const bar=document.createElement('div');
-      bar.className='waveform-bar';
-      bar.style.height=(Math.random()*16+4)+'px';
-      wf.appendChild(bar);
+  function load(dateStr){
+    const snip=SNIPPETS[dateStr];
+    if(!snip||Date.now()>=RELEASE){section.hidden=true;current=null;renderTracklist(null);return}
+    current=dateStr;
+    audio.pause();audio.src='snippets/snippet-'+dateStr+'.mp3';audio.preload='none';
+    $title.textContent=snip.t;
+    $feat.textContent=snip.ft?'ft. '+snip.ft:'';
+    $day.textContent='Day '+(SNIP_DAYS.indexOf(dateStr)+1)+' / '+SNIP_DAYS.length;
+    $wave.innerHTML='';bars=[];
+    snip.w.forEach(v=>{const b=document.createElement('span');b.style.height=Math.max(8,v)+'%';$wave.appendChild(b);bars.push(b)});
+    duration=30;paint(0);
+    $play.classList.remove('is-playing','is-loading');
+    section.hidden=false;
+    renderTracklist(snip.t);
+    if('mediaSession' in navigator){
+      try{navigator.mediaSession.metadata=new MediaMetadata({title:snip.t+' (snippet)',artist:'Teezyy',album:'Time Is Money',
+        artwork:[{src:'images/apple-touch-icon.png',sizes:'180x180',type:'image/png'}]})}catch(e){}
     }
   }
 
-  function initPlayer(){
-    const playBtn=document.getElementById('play-btn');
-    const playIcon=document.getElementById('play-icon');
-    const progressWrap=document.getElementById('progress-wrap');
-    const progressBar=document.getElementById('progress-bar');
-    const timeEl=document.getElementById('audio-time');
-    const bars=()=>document.querySelectorAll('.waveform-bar');
-    const PLAY='<polygon points="7,3 21,12 7,21"/>';
-    const PAUSE='<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
+  /* play / pause */
+  $play.addEventListener('click',()=>{
+    if(!current)return;
+    if(audio.paused){
+      $play.classList.add('is-loading');
+      const p=audio.play();
+      if(p&&p.catch)p.catch(()=>{$play.classList.remove('is-loading','is-playing')});
+    }else audio.pause();
+  });
+  audio.addEventListener('playing',()=>{$play.classList.remove('is-loading');$play.classList.add('is-playing');$play.setAttribute('aria-label','Pause snippet')});
+  audio.addEventListener('pause',()=>{$play.classList.remove('is-playing','is-loading');$play.setAttribute('aria-label','Play snippet')});
+  audio.addEventListener('waiting',()=>$play.classList.add('is-loading'));
+  audio.addEventListener('loadedmetadata',()=>{if(audio.duration&&isFinite(audio.duration)){duration=audio.duration;paint(audio.currentTime)}});
+  audio.addEventListener('timeupdate',()=>{if(!dragging)paint(audio.currentTime)});
+  audio.addEventListener('ended',()=>{audio.currentTime=0;paint(0)});
+  audio.addEventListener('error',()=>{if(audio.src&&current){$play.classList.remove('is-loading','is-playing')}});
 
-    function fmt(s){return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
-
-    /* UI follows the real audio state (handles blocked autoplay, failed loads, lock-screen pause) */
-    audio.addEventListener('play',()=>{playIcon.innerHTML=PAUSE;playBtn.setAttribute('aria-label','Pause snippet')});
-    audio.addEventListener('pause',()=>{playIcon.innerHTML=PLAY;playBtn.setAttribute('aria-label','Play snippet')});
-    audio.addEventListener('error',()=>{playIcon.innerHTML=PLAY});
-
-    playBtn.addEventListener('click',()=>{
-      if(audio.paused){
-        const p=audio.play();
-        if(p&&typeof p.catch==='function')p.catch(()=>{playIcon.innerHTML=PLAY});
-      }else audio.pause();
-    });
-    audio.addEventListener('timeupdate',()=>{
-      if(!audio.duration)return;
-      const pct=audio.currentTime/audio.duration;
-      progressBar.style.width=(pct*100)+'%';
-      timeEl.textContent=fmt(audio.currentTime);
-      const b=bars();
-      const activeCount=Math.floor(pct*b.length);
-      b.forEach((bar,i)=>bar.classList.toggle('active',i<activeCount));
-    });
-    audio.addEventListener('ended',()=>{
-      playIcon.innerHTML=PLAY;
-      progressBar.style.width='0%';timeEl.textContent='0:00';
-      bars().forEach(b=>b.classList.remove('active'));
-    });
-    progressWrap.addEventListener('click',(e)=>{
-      const rect=progressWrap.getBoundingClientRect();
-      if(audio.duration)audio.currentTime=(e.clientX-rect.left)/rect.width*audio.duration;
-    });
+  /* seek: tap or drag anywhere on the waveform */
+  function seekFromX(x){
+    const r=$wave.getBoundingClientRect();
+    const pct=Math.min(1,Math.max(0,(x-r.left)/r.width));
+    const t=pct*duration;paint(t);return t;
   }
+  function commit(t){
+    try{audio.currentTime=t}catch(e){}
+    if(audio.paused){const p=audio.play();if(p&&p.catch)p.catch(()=>{})}
+  }
+  $wave.addEventListener('pointerdown',e=>{
+    if(!current)return;dragging=true;$wave.setPointerCapture(e.pointerId);seekFromX(e.clientX);
+  });
+  $wave.addEventListener('pointermove',e=>{if(dragging)seekFromX(e.clientX)});
+  $wave.addEventListener('pointerup',e=>{if(!dragging)return;dragging=false;commit(seekFromX(e.clientX))});
+  $wave.addEventListener('pointercancel',()=>{dragging=false;paint(audio.currentTime)});
+  $wave.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      e.preventDefault();const t=Math.min(duration,Math.max(0,audio.currentTime+(e.key==='ArrowRight'?5:-5)));
+      try{audio.currentTime=t}catch(_){}paint(t);
+    }else if(e.key===' '||e.key==='Enter'){e.preventDefault();$play.click()}
+  });
+
+  /* "next snippet in" ticker + midnight rollover */
+  function tickNext(){
+    const now=new Date();
+    const today=localDateStr(now);
+    if(today!==current&&!(current===null&&!SNIPPETS[today]))load(today);
+    if(!current){$next.textContent='';return}
+    const mid=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1).getTime();
+    const last=current===SNIP_DAYS[SNIP_DAYS.length-1];
+    const target=last?RELEASE:mid;
+    const d=Math.max(0,target-now.getTime());
+    const hh=Math.floor(d/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
+    $next.textContent=(last?'Full album in ':'Next snippet in ')+pad(hh)+':'+pad(mm)+':'+pad(ss);
+  }
+  load(localDateStr(new Date()));
+  tickNext();setInterval(tickNext,1000);
 })();
-
 </script>
 
 </body>
