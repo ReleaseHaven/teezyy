@@ -814,11 +814,6 @@ window.addEventListener('message',e=>{
     }
   }catch(_){}
 });
-/* tapping into the Spotify box (or any embed) moves focus into its frame: treat that as "they want that player" */
-window.addEventListener('blur',()=>{setTimeout(()=>{
-  const a=document.activeElement;
-  if(a&&a.tagName==='IFRAME'&&a.closest('.spotify-section,.video-wrap'))stopSnippet();
-},0)});
 
 /* EMBEDS: load Spotify/YouTube about 1.5 screens before they scroll into view */
 (function(){
