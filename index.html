@@ -162,8 +162,11 @@ body::after{
 .btn-large{padding:22px 64px;font-size:clamp(1.1rem,3vw,1.5rem)}
 
 /* ===== SOCIAL BAR ===== */
-.social-bar{padding:clamp(40px,7vh,70px) 20px;text-align:center}
-.social-links{display:flex;justify-content:center;gap:clamp(28px,6vw,52px)}
+.social-bar{
+  padding:0 20px clamp(8px,2vh,24px);text-align:center;
+  position:relative;z-index:3;margin-top:clamp(-120px,-11vh,-56px);
+}
+.social-links{display:flex;justify-content:center;gap:clamp(26px,5vw,64px)}
 .social-links a{
   color:var(--dim);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
   display:block;position:relative;
@@ -174,18 +177,21 @@ body::after{
 }
 .social-links a:hover{color:var(--white);transform:translateY(-3px) scale(1.1)}
 .social-links a:hover::after{width:100%}
-.social-links svg{width:48px;height:48px;fill:currentColor}
+.social-links svg{width:clamp(52px,6vw,76px);height:clamp(52px,6vw,76px);fill:currentColor;display:block}
+.footer .social-links svg{width:44px;height:44px}
 
 /* ===== PHOTO GALLERY (skyline = background) ===== */
 .gallery-skyline{
   position:relative;width:100%;overflow:hidden;
+  /* pulled up under the tracklist so the last rows sit over the skyline */
+  margin-top:clamp(-460px,-30vw,-140px);z-index:1;
 }
 .gallery-skyline img{
   width:100%;display:block;
   filter:grayscale(100%) brightness(0.35) contrast(1.1);
 }
 .gallery-skyline::before{
-  content:'';position:absolute;top:0;left:0;width:100%;height:30%;
+  content:'';position:absolute;top:0;left:0;width:100%;height:55%;
   background:linear-gradient(180deg,var(--black),transparent);z-index:1;pointer-events:none;
 }
 .gallery-photos{
@@ -245,13 +251,13 @@ body::after{
 }
 .studio-bg img{
   width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;
-  filter:grayscale(100%) brightness(0.22) contrast(1.1);
+  filter:grayscale(100%) brightness(0.5) contrast(1.1);
   opacity:0;transition:opacity 2.4s ease;
 }
 .studio-bg img.loaded{opacity:1}
 .studio-bg::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.55) 22%,rgba(0,0,0,0.55) 70%,var(--black) 100%);
+  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.25) 25%,rgba(0,0,0,0.3) 70%,var(--black) 100%);
 }
 
 /* ===== FIELD (subtle B/W band leading into pre-save) ===== */
@@ -261,19 +267,19 @@ body::after{
 }
 .field-wrap img{
   width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;
-  filter:grayscale(100%) brightness(0.3) contrast(1.15);
+  filter:grayscale(100%) brightness(0.55) contrast(1.15);
   opacity:0;transition:opacity 2.4s ease;
 }
 .field-wrap img.loaded{opacity:1}
 .field-wrap::after{
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.2) 35%,rgba(0,0,0,0.35) 65%,var(--black) 100%);
+  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.05) 30%,rgba(0,0,0,0.15) 65%,var(--black) 100%);
 }
 
 /* ===== TRACKLIST ===== */
 .tracklist-section{
-  padding:clamp(48px,9vh,110px) 20px clamp(64px,11vh,130px);
-  max-width:1100px;margin:0 auto;
+  padding:clamp(48px,9vh,110px) 20px 0;
+  max-width:1100px;margin:0 auto;position:relative;z-index:3;
 }
 .tl-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:clamp(20px,4vh,40px)}
 .tl-list{list-style:none;counter-reset:none}
@@ -458,7 +464,7 @@ body::after{
   .hero-dropping{margin-top:40px}
   .countdown{margin-top:22px}
   .btn-hero{padding:22px 58px;font-size:1.15rem;margin-top:72px}
-  .social-bar{padding:10px 20px 20px}
+  .social-bar{padding:0 20px 8px;margin-top:-64px}
   .img-wrap{height:220px}
   .pool-wrap::before{
     content:'';position:absolute;top:0;left:0;width:100%;height:40%;
@@ -466,7 +472,9 @@ body::after{
     z-index:1;pointer-events:none;
   }
   .youtube-section{margin-top:-100px;position:relative;z-index:2}
-  .field-wrap{height:340px}
+  .field-wrap{height:380px}
+  .gallery-skyline{margin-top:-90px}
+  .gallery-photos{margin-top:-70px}
   .field-wrap img{object-position:42% 30%}
   .studio-bg img{object-position:52% 50%}
   /* static grain on phones: saves battery, avoids jank */
