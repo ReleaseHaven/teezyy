@@ -31,7 +31,9 @@
   --black:#000;--dark:#0a0a0a;--darker:#111;--gray:#1a1a1a;
   --white:#fff;--text:#d6d6d6;--muted:#777;--dim:#555;
 }
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#000}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.snip-wave,.snip-play,.countdown{-webkit-user-select:none;user-select:none}
 body{
   background:var(--black);color:var(--text);
   font-family:'Inter Tight',system-ui,sans-serif;
@@ -72,7 +74,7 @@ body::after{
 
 /* ===== HERO ===== */
 .hero{
-  position:relative;width:100%;height:100vh;height:100dvh;
+  position:relative;width:100%;min-height:100vh;min-height:100dvh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   overflow:hidden;
 }
@@ -175,8 +177,10 @@ body::after{
   content:'';position:absolute;bottom:-8px;left:50%;width:0;height:1px;
   background:var(--white);transition:all 0.3s ease;transform:translateX(-50%);
 }
-.social-links a:hover{color:var(--white);transform:translateY(-3px) scale(1.1)}
-.social-links a:hover::after{width:100%}
+@media(hover:hover){
+  .social-links a:hover{color:var(--white);transform:translateY(-3px) scale(1.1)}
+  .social-links a:hover::after{width:100%}
+}
 .social-links svg{width:clamp(52px,6vw,76px);height:clamp(52px,6vw,76px);fill:currentColor;display:block}
 .footer .social-links svg{width:44px;height:44px}
 
@@ -222,10 +226,10 @@ body::after{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse at center,transparent 15%,rgba(0,0,0,0.85) 100%);
 }
-.img-wrap:hover img{
+@media(hover:hover){.img-wrap:hover img{
   transform:scale(1.04);
   filter:grayscale(70%) contrast(1.1) brightness(0.9);
-}
+}}
 .img-offset-1{max-width:72%;margin-left:4%}
 .img-offset-2{max-width:65%;margin-left:auto;margin-right:6%;margin-top:-40px}
 
@@ -288,7 +292,6 @@ body::after{
   padding:clamp(12px,1.8vh,18px) 0;
   border-top:1px solid rgba(255,255,255,0.07);
 }
-.tl-row:last-child{border-bottom:1px solid rgba(255,255,255,0.07)}
 .tl-num{
   font-family:'Inter Tight',sans-serif;font-weight:500;font-variant-numeric:tabular-nums;
   font-size:clamp(0.75rem,1.6vw,1rem);color:var(--dim);letter-spacing:0.1em;
@@ -380,7 +383,10 @@ body::after{
   padding:clamp(40px,8vh,100px) 20px;
   max-width:650px;margin:0 auto;
 }
-.spotify-section iframe{width:100%;border:none;border-radius:12px}
+.spotify-section iframe{width:100%;border:none;border-radius:12px;display:block;background:var(--darker)}
+.spotify-section > div{min-height:352px;border-radius:12px;background:var(--darker)}
+iframe.embed{opacity:0;transition:opacity 0.8s ease}
+iframe.embed.ready{opacity:1}
 
 /* ===== YOUTUBE ===== */
 .youtube-section{
@@ -467,9 +473,11 @@ body::after{
 @media(max-width:767px){
   /* hero: title up top, countdown in the middle, button low - evenly balanced above the icons */
   .hero-content{
-    width:100%;height:100%;margin-top:0;
+    width:100%;min-height:100vh;min-height:100dvh;margin-top:0;
     display:flex;flex-direction:column;align-items:center;
+    padding-top:13vh;
     padding-top:max(13dvh,calc(env(safe-area-inset-top,0px) + 56px));
+    padding-bottom:9vh;
     padding-bottom:max(9dvh,calc(env(safe-area-inset-bottom,0px) + 40px));
   }
   .hero-subtitle{margin-top:24px}
@@ -505,6 +513,20 @@ body::after{
   .btn:hover::before{transform:translateX(-101%)}
   .btn:active{color:var(--black);border-color:var(--white)}
   .btn:active::before{transform:translateX(0)}
+}
+
+/* ===== PHONE IN LANDSCAPE: fit the whole hero on one short screen ===== */
+@media(max-height:520px) and (orientation:landscape){
+  .hero-content{padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:16px;margin-top:0;justify-content:center}
+  .hero-title{font-size:min(17vw,24vh)}
+  .hero-subtitle{font-size:min(3.5vw,4.4vh);margin-top:2vh}
+  .hero-dropping{margin-top:4vh}
+  .countdown{margin-top:1.5vh;gap:4vw}
+  .countdown-num{font-size:min(7vw,11vh)}
+  .countdown-divider{font-size:min(5vw,8vh)}
+  .countdown-label{margin-top:4px}
+  .btn-hero{margin-top:5vh;padding:14px 48px;font-size:1rem}
+  .social-bar{padding-top:32px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -686,7 +708,7 @@ body::after{
 <section class="spotify-section">
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">MUSIC</div>
   <div>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1TV53wsca4C4mEd0miL1NK?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Teezyy on Spotify"></iframe>
+    <iframe class="embed" style="border-radius:12px" data-src="https://open.spotify.com/embed/artist/1TV53wsca4C4mEd0miL1NK?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Teezyy on Spotify"></iframe>
   </div>
 </section>
 </div><!-- /studio-block -->
@@ -701,13 +723,13 @@ body::after{
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">VIDEOS</div>
   <div class="video-stack">
     <div class="video-wrap">
-      <iframe loading="lazy" src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe loading="lazy" src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe loading="lazy" src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -767,6 +789,15 @@ document.querySelectorAll('img.fade-img').forEach(img=>{
   const show=()=>img.classList.add('loaded');
   if(img.complete&&img.naturalWidth)show();else img.addEventListener('load',show,{once:true});
 });
+
+/* EMBEDS: load Spotify/YouTube about 1.5 screens before they scroll into view */
+(function(){
+  const frames=[...document.querySelectorAll('iframe.embed[data-src]')];
+  const start=f=>{if(f.src)return;f.addEventListener('load',()=>f.classList.add('ready'),{once:true});f.src=f.dataset.src};
+  if(!('IntersectionObserver' in window)){frames.forEach(start);return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){start(e.target);io.unobserve(e.target)}}),{rootMargin:'1600px 0px 1600px 0px'});
+  frames.forEach(f=>io.observe(f));
+})();
 
 /* PRE-SAVE / LISTEN BUTTONS */
 function trackPresave(){
@@ -954,9 +985,11 @@ function renderTracklist(todayTitle){
     const r=$wave.getBoundingClientRect();
     const t=Math.min(1,Math.max(0,(x-r.left)/r.width))*duration;paint(t);return t;
   }
+  let pendingSeek=null;
+  audio.addEventListener('loadedmetadata',()=>{if(pendingSeek!==null){try{audio.currentTime=pendingSeek}catch(e){}pendingSeek=null}});
   function commit(t){
-    try{audio.currentTime=t}catch(e){}
-    if(audio.paused){const p=audio.play();if(p&&p.catch)p.catch(()=>{})}
+    if(audio.readyState<1)pendingSeek=t;else{try{audio.currentTime=t}catch(e){}}
+    if(audio.paused){$play.classList.add('is-loading');const p=audio.play();if(p&&p.catch)p.catch(()=>{$play.classList.remove('is-loading')})}
   }
   $wave.addEventListener('pointerdown',e=>{if(!current)return;dragging=true;try{$wave.setPointerCapture(e.pointerId)}catch(_){}seekFromX(e.clientX)});
   $wave.addEventListener('pointermove',e=>{if(dragging)seekFromX(e.clientX)});
