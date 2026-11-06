@@ -20,7 +20,11 @@
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<!-- Clash Display is a Fontshare font (not on Google Fonts) -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://teezyy.com/">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -232,6 +236,38 @@ body::after{
   pointer-events:none;
 }
 
+/* ===== STUDIO (dark B/W backdrop behind snippet + music) ===== */
+.studio-block{position:relative;overflow:hidden;isolation:isolate}
+.studio-bg{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+}
+.studio-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;
+  filter:grayscale(100%) brightness(0.22) contrast(1.1);
+  opacity:0;transition:opacity 2.4s ease;
+}
+.studio-bg img.loaded{opacity:1}
+.studio-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.55) 22%,rgba(0,0,0,0.55) 70%,var(--black) 100%);
+}
+
+/* ===== FIELD (subtle B/W band leading into pre-save) ===== */
+.field-wrap{
+  position:relative;width:100%;height:clamp(260px,55vh,560px);overflow:hidden;
+  margin-bottom:clamp(-160px,-12vh,-80px);
+}
+.field-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;
+  filter:grayscale(100%) brightness(0.3) contrast(1.15);
+  opacity:0;transition:opacity 2.4s ease;
+}
+.field-wrap img.loaded{opacity:1}
+.field-wrap::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,var(--black) 0%,rgba(0,0,0,0.2) 35%,rgba(0,0,0,0.35) 65%,var(--black) 100%);
+}
+
 /* ===== DAILY SNIPPET ===== */
 .snippet-section{
   padding:clamp(60px,10vh,120px) 20px;
@@ -369,6 +405,21 @@ body::after{
     z-index:1;pointer-events:none;
   }
   .youtube-section{margin-top:-100px;position:relative;z-index:2}
+  .field-wrap{height:340px}
+  .field-wrap img{object-position:42% 30%}
+  .studio-bg img{object-position:52% 50%}
+  /* static grain on phones: saves battery, avoids jank */
+  body::after{animation:none}
+  /* no sticky hover states on touch */
+  .btn:hover{color:var(--text);border-color:rgba(255,255,255,0.25)}
+  .btn:hover::before{transform:translateX(-101%)}
+  .btn:active{color:var(--black);border-color:var(--white)}
+  .btn:active::before{transform:translateX(0)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
 }
 
 /* SCROLLBAR */
@@ -381,7 +432,10 @@ body::after{
   position:fixed;inset:0;background:var(--black);z-index:99999;
   display:flex;align-items:center;justify-content:center;
   transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),visibility 0.8s;
+  /* failsafe: hides itself even if JS never runs */
+  animation:loaderAutoHide 0.8s ease 3.5s forwards;
 }
+@keyframes loaderAutoHide{to{opacity:0;visibility:hidden;pointer-events:none}}
 .page-loader.done{opacity:0;visibility:hidden;pointer-events:none}
 .loader-text{
   font-family:'Clash Display',sans-serif;font-weight:700;
@@ -507,6 +561,12 @@ body::after{
   </div>
 </div>
 
+<!-- ===== STUDIO BLOCK (snippet + music over dark B/W studio photo) ===== -->
+<div class="studio-block">
+<div class="studio-bg" aria-hidden="true">
+  <img src="images/teezyy-studio.jpg" srcset="images/teezyy-studio-sm.jpg 900w, images/teezyy-studio.jpg 1800w" sizes="100vw" alt="" loading="lazy" decoding="async" class="fade-img">
+</div>
+
 <!-- ===== DAILY SNIPPET ===== -->
 <section class="snippet-section" id="snippet-section">
   <div class="reveal">
@@ -530,9 +590,10 @@ body::after{
 <section class="spotify-section">
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">MUSIC</div>
   <div>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1TV53wsca4C4mEd0miL1NK?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/1TV53wsca4C4mEd0miL1NK?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Teezyy on Spotify"></iframe>
   </div>
 </section>
+</div><!-- /studio-block -->
 
 <!-- ===== POOL ===== -->
 <div class="pool-wrap">
@@ -544,24 +605,29 @@ body::after{
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">VIDEOS</div>
   <div class="video-stack">
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe loading="lazy" src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe loading="lazy" src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe loading="lazy" src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </section>
+
+<!-- ===== FIELD (subtle B/W band) ===== -->
+<div class="field-wrap" aria-hidden="true">
+  <img src="images/teezyy-field.jpg" srcset="images/teezyy-field-sm.jpg 900w, images/teezyy-field.jpg 1800w" sizes="100vw" alt="" loading="lazy" decoding="async" class="fade-img">
+</div>
 
 <!-- ===== PRE-SAVE CTA ===== -->
 <section class="presave-section" id="presave">
   <div class="presave-inner">
     <div class="presave-big">TIME IS<br>MONEY</div>
-    <div class="presave-album">ALBUM DROPPING</div>
+    <div class="presave-album" id="presave-album">ALBUM DROPPING</div>
     <div class="presave-date">NOVEMBER 13, 2026</div>
-    <a href="#" class="btn btn-large" id="presave-link" onclick="trackPresave()">PRE-SAVE NOW</a>
+    <a href="https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK" target="_blank" rel="noopener" class="btn btn-large" id="presave-link">PRE-SAVE NOW</a>
   </div>
 </section>
 
@@ -589,23 +655,75 @@ body::after{
 /* PAGE LOADER — dismiss after animation, don't wait for all assets */
 setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600);
 
+/* ===== CONFIG =====
+   PRESAVE_URL: paste the Spotify Countdown Page / pre-save link here when it exists.
+   Until then the buttons fall back to the Spotify artist profile (follow).
+   LISTEN_URL: album link for release day (falls back to artist profile). */
+const PRESAVE_URL='';
+const LISTEN_URL='';
+const ARTIST_URL='https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK';
+/* Spotify releases at 00:00 in each listener's local time, so a local-time countdown is correct */
+const RELEASE=new Date(2026,10,13,0,0,0).getTime();
+
+/* fade in subtle background photos once loaded */
+document.querySelectorAll('img.fade-img').forEach(img=>{
+  const show=()=>img.classList.add('loaded');
+  if(img.complete&&img.naturalWidth)show();else img.addEventListener('load',show,{once:true});
+});
+
+/* PRE-SAVE / LISTEN BUTTONS */
+function trackPresave(){
+  try{if(typeof gtag==='function')gtag('event','presave_click',{event_category:'engagement'})}catch(e){}
+}
+function setReleasedState(){
+  const url=LISTEN_URL||ARTIST_URL;
+  const hero=document.getElementById('hero-presave');
+  const cta=document.getElementById('presave-link');
+  [hero,cta].forEach(a=>{if(!a)return;a.href=url;a.target='_blank';a.rel='noopener'});
+  if(hero)hero.textContent='LISTEN NOW';
+  if(cta)cta.textContent='LISTEN NOW';
+  const drop=document.querySelector('.hero-dropping');
+  if(drop)drop.textContent='OUT NOW';
+  const al=document.getElementById('presave-album');
+  if(al)al.textContent='OUT NOW';
+  const cd=document.getElementById('countdown');
+  if(cd)cd.style.display='none';
+}
+(function(){
+  const cta=document.getElementById('presave-link');
+  const hero=document.getElementById('hero-presave');
+  if(PRESAVE_URL){
+    [hero,cta].forEach(a=>{a.href=PRESAVE_URL;a.target='_blank';a.rel='noopener'});
+  }else{
+    cta.href=ARTIST_URL;
+  }
+  [hero,cta].forEach(a=>a.addEventListener('click',trackPresave));
+})();
+
 /* COUNTDOWN — simple, no animation on numbers */
 (function(){
-  const target=new Date('2026-11-13T00:00:00').getTime();
+  const target=RELEASE;
   const $d=document.getElementById('cd-days');
   const $h=document.getElementById('cd-hours');
   const $m=document.getElementById('cd-mins');
   const $s=document.getElementById('cd-secs');
+  let timer=null,released=false;
   function pad(n){return n<10?'0'+n:String(n)}
   function tick(){
     const diff=target-Date.now();
-    if(diff<=0){$d.textContent=$h.textContent=$m.textContent=$s.textContent='00';return}
+    if(diff<=0){
+      $d.textContent=$h.textContent=$m.textContent=$s.textContent='00';
+      if(!released){released=true;setReleasedState();if(timer)clearInterval(timer)}
+      return;
+    }
     $d.textContent=pad(Math.floor(diff/864e5));
     $h.textContent=pad(Math.floor((diff%864e5)/36e5));
     $m.textContent=pad(Math.floor((diff%36e5)/6e4));
     $s.textContent=pad(Math.floor((diff%6e4)/1e3));
   }
-  tick();setInterval(tick,1000);
+  tick();if(!released)timer=setInterval(tick,1000);
+  /* resync instantly when a phone wakes the tab back up */
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!released)tick()});
 })();
 
 
@@ -664,13 +782,21 @@ setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600
     const progressBar=document.getElementById('progress-bar');
     const timeEl=document.getElementById('audio-time');
     const bars=()=>document.querySelectorAll('.waveform-bar');
-    let playing=false;
+    const PLAY='<polygon points="7,3 21,12 7,21"/>';
+    const PAUSE='<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
 
     function fmt(s){return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
 
+    /* UI follows the real audio state (handles blocked autoplay, failed loads, lock-screen pause) */
+    audio.addEventListener('play',()=>{playIcon.innerHTML=PAUSE;playBtn.setAttribute('aria-label','Pause snippet')});
+    audio.addEventListener('pause',()=>{playIcon.innerHTML=PLAY;playBtn.setAttribute('aria-label','Play snippet')});
+    audio.addEventListener('error',()=>{playIcon.innerHTML=PLAY});
+
     playBtn.addEventListener('click',()=>{
-      if(playing){audio.pause();playIcon.innerHTML='<polygon points="7,3 21,12 7,21"/>';playing=false}
-      else{audio.play();playIcon.innerHTML='<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';playing=true}
+      if(audio.paused){
+        const p=audio.play();
+        if(p&&typeof p.catch==='function')p.catch(()=>{playIcon.innerHTML=PLAY});
+      }else audio.pause();
     });
     audio.addEventListener('timeupdate',()=>{
       if(!audio.duration)return;
@@ -682,7 +808,7 @@ setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600
       b.forEach((bar,i)=>bar.classList.toggle('active',i<activeCount));
     });
     audio.addEventListener('ended',()=>{
-      playing=false;playIcon.innerHTML='<polygon points="7,3 21,12 7,21"/>';
+      playIcon.innerHTML=PLAY;
       progressBar.style.width='0%';timeEl.textContent='0:00';
       bars().forEach(b=>b.classList.remove('active'));
     });
@@ -693,11 +819,6 @@ setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600
   }
 })();
 
-/* PRE-SAVE TRACKING */
-function trackPresave(){
-  if(typeof gtag==='function')gtag('event','presave_click',{event_category:'engagement'});
-}
-document.getElementById('hero-presave').addEventListener('click',trackPresave);
 </script>
 
 </body>
