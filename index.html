@@ -443,6 +443,12 @@ body::after{
   margin:0 auto clamp(20px,3vh,32px);
 }
 .footer-copy{font-size:0.65rem;color:var(--muted);letter-spacing:0.2em;margin-top:20px}
+.footer-credit{
+  display:inline-block;margin-top:14px;padding:6px 0;
+  font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;transition:color 0.3s ease;
+}
+.footer-credit:hover{color:var(--text)}
 
 /* ===== DESKTOP ===== */
 @media(min-width:768px){
@@ -736,6 +742,7 @@ body::after{
     </a>
   </div>
   <div class="footer-copy">&copy; 2026 TEEZYY</div>
+  <a class="footer-credit" href="https://muledigitalsolutions.com" target="_blank" rel="noopener">Website by Mule Digital Solutions</a>
 </footer>
 
 <script>
