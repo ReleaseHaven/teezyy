@@ -723,13 +723,13 @@ iframe.embed.ready{opacity:1}
   <div class="label" style="margin-bottom:clamp(16px,3vh,28px)">VIDEOS</div>
   <div class="video-stack">
     <div class="video-wrap">
-      <iframe class="embed" data-src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/ZfbQ7bSbrM8?rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Teezyy - The Bunker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe class="embed" data-src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/EOOzIr5RFj0?rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Teezyy - Decode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="video-wrap">
-      <iframe class="embed" data-src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe class="embed" data-src="https://www.youtube.com/embed/xlMSyOLsGc4?rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Teezyy - Head In The Game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -790,10 +790,40 @@ document.querySelectorAll('img.fade-img').forEach(img=>{
   if(img.complete&&img.naturalWidth)show();else img.addEventListener('load',show,{once:true});
 });
 
+/* ONE PLAYER AT A TIME: snippet stops when someone uses Spotify or a YouTube video */
+const stopSnippet=()=>{try{window.teezyyStopSnippet&&window.teezyyStopSnippet()}catch(e){}};
+function ytListen(f){
+  if(!/youtube\.com/.test(f.src))return;
+  try{f.contentWindow.postMessage(JSON.stringify({event:'listening',id:f.dataset.src,channel:'widget'}),'https://www.youtube.com')}catch(e){}
+}
+window.teezyyPauseEmbeds=function(){
+  document.querySelectorAll('.video-wrap iframe[src]').forEach(f=>{
+    try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}),'https://www.youtube.com')}catch(e){}
+  });
+};
+window.addEventListener('message',e=>{
+  try{
+    let d=e.data;if(typeof d==='string'){if(d[0]!=='{')return;d=JSON.parse(d)}
+    if(!d||typeof d!=='object')return;
+    if(e.origin==='https://www.youtube.com'){
+      const st=d.event==='onStateChange'?d.info:(d.info&&d.info.playerState);
+      if(st===1||st===3)stopSnippet();
+    }else if(e.origin==='https://open.spotify.com'){
+      const p=d.payload||d.data||d;
+      if((d.type==='playback_update'||d.type==='playback_started')&&p&&p.isPaused===false)stopSnippet();
+    }
+  }catch(_){}
+});
+/* tapping into the Spotify box (or any embed) moves focus into its frame: treat that as "they want that player" */
+window.addEventListener('blur',()=>{setTimeout(()=>{
+  const a=document.activeElement;
+  if(a&&a.tagName==='IFRAME'&&a.closest('.spotify-section,.video-wrap'))stopSnippet();
+},0)});
+
 /* EMBEDS: load Spotify/YouTube about 1.5 screens before they scroll into view */
 (function(){
   const frames=[...document.querySelectorAll('iframe.embed[data-src]')];
-  const start=f=>{if(f.src)return;f.addEventListener('load',()=>f.classList.add('ready'),{once:true});f.src=f.dataset.src};
+  const start=f=>{if(f.src)return;f.addEventListener('load',()=>{f.classList.add('ready');ytListen(f)},{once:true});f.src=f.dataset.src};
   if(!('IntersectionObserver' in window)){frames.forEach(start);return}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){start(e.target);io.unobserve(e.target)}}),{rootMargin:'1600px 0px 1600px 0px'});
   frames.forEach(f=>io.observe(f));
@@ -972,6 +1002,8 @@ function renderTracklist(todayTitle){
       if(p&&p.catch)p.catch(()=>{$play.classList.remove('is-loading','is-playing')});
     }else audio.pause();
   });
+  window.teezyyStopSnippet=()=>{if(!audio.paused)audio.pause()};
+  audio.addEventListener('play',()=>{try{window.teezyyPauseEmbeds&&window.teezyyPauseEmbeds()}catch(e){}});
   audio.addEventListener('playing',()=>{$play.classList.remove('is-loading');$play.classList.add('is-playing');$play.setAttribute('aria-label','Pause snippet')});
   audio.addEventListener('pause',()=>{$play.classList.remove('is-playing','is-loading');$play.setAttribute('aria-label','Play snippet')});
   audio.addEventListener('waiting',()=>$play.classList.add('is-loading'));
