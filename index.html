@@ -139,7 +139,7 @@ body::after{
 
 /* BUTTONS */
 .btn{
-  display:inline-block;
+  display:inline-flex;align-items:center;justify-content:center;gap:0.6em;
   padding:18px 56px;
   border:1px solid rgba(255,255,255,0.25);
   color:var(--text);text-decoration:none;
@@ -161,6 +161,8 @@ body::after{
   animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 1.2s both;
   margin-top:clamp(36px,6vh,56px);
 }
+.btn-ico{width:1.05em;height:1.05em;fill:currentColor;flex-shrink:0;margin-top:-0.08em}
+.btn-label{white-space:nowrap}
 .btn-large{padding:22px 64px;font-size:clamp(1.1rem,3vw,1.5rem)}
 
 /* ===== SOCIAL BAR ===== */
@@ -483,6 +485,7 @@ iframe.embed.ready{opacity:1}
   .hero-subtitle{margin-top:24px}
   .hero-dropping{margin-top:auto}
   .countdown{margin-top:20px}
+  #presave-link{width:min(100%,320px);padding:22px 0;font-size:1.15rem;letter-spacing:0.2em}
   .btn-hero{
     margin-top:auto;width:min(100%,300px);padding:24px 0;text-align:center;
     font-size:1.25rem;letter-spacing:0.24em;
@@ -634,7 +637,7 @@ iframe.embed.ready{opacity:1}
         <div class="countdown-label">Sec</div>
       </div>
     </div>
-    <a href="#presave" class="btn btn-large btn-hero" id="hero-presave">PRE-SAVE</a>
+    <a href="https://distrokid.com/hyperfollow/teezyy4/time-is-money" target="_blank" rel="noopener" class="btn btn-large btn-hero" id="hero-presave" aria-label="Pre-save Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">PRE-SAVE</span></a>
   </div>
 </section>
 
@@ -745,7 +748,7 @@ iframe.embed.ready{opacity:1}
     <div class="presave-big">TIME IS<br>MONEY</div>
     <div class="presave-album" id="presave-album">ALBUM DROPPING</div>
     <div class="presave-date">NOVEMBER 13, 2026</div>
-    <a href="https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK" target="_blank" rel="noopener" class="btn btn-large" id="presave-link">PRE-SAVE NOW</a>
+    <a href="https://distrokid.com/hyperfollow/teezyy4/time-is-money" target="_blank" rel="noopener" class="btn btn-large" id="presave-link" aria-label="Pre-save Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">PRE-SAVE NOW</span></a>
   </div>
 </section>
 
@@ -775,11 +778,12 @@ iframe.embed.ready{opacity:1}
 setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600);
 
 /* ===== CONFIG =====
-   PRESAVE_URL: paste the Spotify Countdown Page / pre-save link here when it exists.
-   Until then the buttons fall back to the Spotify artist profile (follow).
-   LISTEN_URL: album link for release day (falls back to artist profile). */
-const PRESAVE_URL='';
-const LISTEN_URL='';
+   PRESAVE_URL: DistroKid HyperFollow page. The Spotify login popup on that page is what actually
+   records the pre-save, so fans must go through it (a direct Spotify-auth link would not save).
+   LISTEN_URL: where buttons go from release day. HyperFollow forwards to the album once it is live;
+   swap in the open.spotify.com/album/... link here when it exists if you prefer. */
+const PRESAVE_URL='https://distrokid.com/hyperfollow/teezyy4/time-is-money';
+const LISTEN_URL='https://distrokid.com/hyperfollow/teezyy4/time-is-money';
 const ARTIST_URL='https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK';
 /* Spotify releases at 00:00 in each listener's local time, so a local-time countdown is correct */
 const RELEASE=new Date(2026,10,13,0,0,0).getTime();
@@ -833,8 +837,7 @@ function setReleasedState(){
   const hero=document.getElementById('hero-presave');
   const cta=document.getElementById('presave-link');
   [hero,cta].forEach(a=>{if(!a)return;a.href=url;a.target='_blank';a.rel='noopener'});
-  if(hero)hero.textContent='LISTEN NOW';
-  if(cta)cta.textContent='LISTEN NOW';
+  [hero,cta].forEach(a=>{if(!a)return;const l=a.querySelector('.btn-label');if(l)l.textContent='LISTEN NOW';a.setAttribute('aria-label','Listen to Time Is Money')});
   const drop=document.querySelector('.hero-dropping');
   if(drop)drop.textContent='OUT NOW';
   const al=document.getElementById('presave-album');
@@ -845,11 +848,7 @@ function setReleasedState(){
 (function(){
   const cta=document.getElementById('presave-link');
   const hero=document.getElementById('hero-presave');
-  if(PRESAVE_URL){
-    [hero,cta].forEach(a=>{a.href=PRESAVE_URL;a.target='_blank';a.rel='noopener'});
-  }else{
-    cta.href=ARTIST_URL;
-  }
+  [hero,cta].forEach(a=>{a.href=PRESAVE_URL||ARTIST_URL;a.target='_blank';a.rel='noopener'});
   [hero,cta].forEach(a=>a.addEventListener('click',trackPresave));
 })();
 
