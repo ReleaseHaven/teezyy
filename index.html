@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TEEZYY — TIME IS MONEY</title>
-<meta name="description" content="TEEZYY — TIME IS MONEY. Album dropping November 13, 2026. Pre-save now.">
+<meta name="description" content="TEEZYY — TIME IS MONEY. The album is out now. Listen on Spotify.">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -110,6 +110,13 @@ body::after{
   letter-spacing:0.4em;text-transform:uppercase;
   color:var(--muted);margin-top:clamp(28px,5vh,40px);
   animation:fadeUp 1.5s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+}
+
+/* released state: OUT NOW takes the countdown's place and weight */
+.hero-dropping.is-out{
+  font-family:'Clash Display',sans-serif;font-weight:600;
+  font-size:clamp(2rem,7.5vw,4.2rem);line-height:1;letter-spacing:0.16em;
+  color:var(--text);padding-left:0.16em;
 }
 
 /* COUNTDOWN */
@@ -524,6 +531,7 @@ iframe.embed.ready{opacity:1}
   .hero-title{font-size:min(17vw,24vh)}
   .hero-subtitle{font-size:min(3.5vw,4.4vh);margin-top:2vh}
   .hero-dropping{margin-top:4vh}
+  .hero-dropping.is-out{font-size:min(6vw,11vh)}
   .countdown{margin-top:1.5vh;gap:4vw}
   .countdown-num{font-size:min(7vw,11vh)}
   .countdown-divider{font-size:min(5vw,8vh)}
@@ -615,8 +623,8 @@ iframe.embed.ready{opacity:1}
   <div class="hero-content">
     <h1 class="hero-title">TEEZYY</h1>
     <p class="hero-subtitle">TIME IS MONEY</p>
-    <p class="hero-dropping">ALBUM DROPPING</p>
-    <div class="countdown" id="countdown">
+    <p class="hero-dropping is-out">OUT NOW</p>
+    <div class="countdown" id="countdown" style="display:none">
       <div class="countdown-unit">
         <div class="countdown-num" id="cd-days"><span class="dg">0</span><span class="dg">0</span></div>
         <div class="countdown-label">Days</div>
@@ -637,7 +645,7 @@ iframe.embed.ready{opacity:1}
         <div class="countdown-label">Sec</div>
       </div>
     </div>
-    <a href="https://distrokid.com/hyperfollow/teezyy4/time-is-money" target="_blank" rel="noopener" class="btn btn-large btn-hero" id="hero-presave" aria-label="Pre-save Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">PRE-SAVE</span></a>
+    <a href="https://open.spotify.com/album/4syAzeUPFxXwZZXKBxxvTM" target="_blank" rel="noopener" class="btn btn-large btn-hero" id="hero-presave" aria-label="Listen to Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">LISTEN NOW</span></a>
   </div>
 </section>
 
@@ -745,9 +753,9 @@ iframe.embed.ready{opacity:1}
 <section class="presave-section" id="presave">
   <div class="presave-inner">
     <div class="presave-big">TIME IS<br>MONEY</div>
-    <div class="presave-album" id="presave-album">ALBUM DROPPING</div>
+    <div class="presave-album" id="presave-album">OUT NOW</div>
     <div class="presave-date">NOVEMBER 13, 2026</div>
-    <a href="https://distrokid.com/hyperfollow/teezyy4/time-is-money" target="_blank" rel="noopener" class="btn btn-large" id="presave-link" aria-label="Pre-save Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">PRE-SAVE NOW</span></a>
+    <a href="https://open.spotify.com/album/4syAzeUPFxXwZZXKBxxvTM" target="_blank" rel="noopener" class="btn btn-large" id="presave-link" aria-label="Listen to Time Is Money on Spotify"><svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="btn-label">LISTEN NOW</span></a>
   </div>
 </section>
 
@@ -782,10 +790,11 @@ setTimeout(()=>document.getElementById('page-loader').classList.add('done'),1600
    LISTEN_URL: where buttons go from release day. HyperFollow forwards to the album once it is live;
    swap in the open.spotify.com/album/... link here when it exists if you prefer. */
 const PRESAVE_URL='https://distrokid.com/hyperfollow/teezyy4/time-is-money';
-const LISTEN_URL='https://distrokid.com/hyperfollow/teezyy4/time-is-money';
+const LISTEN_URL='https://open.spotify.com/album/4syAzeUPFxXwZZXKBxxvTM';
 const ARTIST_URL='https://open.spotify.com/artist/1TV53wsca4C4mEd0miL1NK';
 /* Spotify releases at 00:00 in each listener's local time, so a local-time countdown is correct */
-const RELEASE=new Date(2026,10,13,0,0,0).getTime();
+/* Album is out: flipped to released for everyone at 13 Nov 00:00 Danish time */
+const RELEASE=Date.UTC(2026,10,12,23,0,0);
 
 /* fade in subtle background photos once loaded */
 document.querySelectorAll('img.fade-img').forEach(img=>{
@@ -838,7 +847,7 @@ function setReleasedState(){
   [hero,cta].forEach(a=>{if(!a)return;a.href=url;a.target='_blank';a.rel='noopener'});
   [hero,cta].forEach(a=>{if(!a)return;const l=a.querySelector('.btn-label');if(l)l.textContent='LISTEN NOW';a.setAttribute('aria-label','Listen to Time Is Money')});
   const drop=document.querySelector('.hero-dropping');
-  if(drop)drop.textContent='OUT NOW';
+  if(drop){drop.textContent='OUT NOW';drop.classList.add('is-out')}
   const al=document.getElementById('presave-album');
   if(al)al.textContent='OUT NOW';
   const cd=document.getElementById('countdown');
